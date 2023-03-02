@@ -33,9 +33,14 @@ echo " " | sudo dnf groupupdate sound-and-video
 echo " " | sudo dnf install intel-media-driver
 echo " " | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm
 
+
 #curl stuff: 1=moe-dark-look-and-feel-global-theme 2=colloid-full-icon-theme
 https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1645543295/Moe-Dark.tar.gz?response-content-disposition=attachment%3B%2520Moe-Dark.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230302%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230302T034956Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=e01c061458c6e8bc5415cf37ed72207212622c18bc12b57aee9d075c44718b25
 https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1639061356/Colloid-teal.tar.xz?response-content-disposition=attachment%3B%2520Colloid-teal.tar.xz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230302%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230302T035348Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=8628932a39e5b7d2893f497ebd322c1e54475d78e13ccf56172990ec84f748eb
+
+#unzip curl stuff
+tar -xf Moe-Dark.tar.gz
+tar -xf Colloid-teal.tar.xz
 
 
 #crontab stuff(not sure if it works)
@@ -56,7 +61,6 @@ mv rofi ~/.config
 mkdir ~/.config/polybar
 mv polybar-themes/* ~/.config/
 echo "1" | sh ~/.config/polybar/setup.sh
-
 
 
 #after-reboot
