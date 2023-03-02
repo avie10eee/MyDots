@@ -64,7 +64,7 @@ echo "1" | sh ~/.config/polybar/setup.sh
 
 
 #after-reboot
-touch after-reboot.txt
+touch ~/after-reboot.txt
 echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.networkmanager_dmenu , git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" > after-reboot.sh
 
 
