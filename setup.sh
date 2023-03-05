@@ -7,11 +7,12 @@ echo " " | sudo sh -c 'echo "defaultyes = True" >> /etc/dnf/dnf.conf'
 
 
 echo " " | sudo dnf upgrade
-
+sleep 10
 
 #install pkgs
 echo " " | sudo dnf install < dnf_pkgs.list
 
+sleep 60
 
 echo " " | sudo mkdir /nix
 chown $USER /nix
@@ -19,6 +20,7 @@ chown $USER /nix
 #installing nix
 curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
 
+sleep 60
 
 #linking nix apps to usr/share/applications
 echo " " | sudo ln -s /nix/var/nix/profiles/per-user/$USER/profile/share/applications /usr/share/applications
@@ -33,6 +35,7 @@ echo " " | sudo dnf groupupdate sound-and-video
 echo " " | sudo dnf install intel-media-driver
 echo " " | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm
 
+sleep 60
 
 #curl stuff: 1=moe-dark-look-and-feel-global-theme 2=colloid-full-icon-theme
 curl https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1645543295/Moe-Dark.tar.gz?response-content-disposition=attachment%3B%2520Moe-Dark.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230302%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230302T034956Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=e01c061458c6e8bc5415cf37ed72207212622c18bc12b57aee9d075c44718b25
