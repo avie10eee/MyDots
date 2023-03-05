@@ -10,7 +10,7 @@ echo " " | sudo dnf upgrade
 
 
 #install pkgs
-echo " " | sudo dnf install tldr cmake curl wget git fzf tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar conky pulseaudio virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip rofi basero autojump neofetch
+echo " " | sudo dnf install < dnf_pkgs.list
 
 
 echo " " | sudo mkdir /nix
