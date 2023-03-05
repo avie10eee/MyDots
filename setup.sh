@@ -10,7 +10,7 @@ echo " " | sudo dnf upgrade
 sleep 10
 
 #install pkgs
-echo " " | sudo dnf install tldr cmake curl fzf tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar pulseaudio virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip basero autojump neofetch alacritty
+echo " " | sudo dnf install tldr cmake curl fzf tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar pulseaudio virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty
 
 sleep 60
 
