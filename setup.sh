@@ -70,6 +70,10 @@ mv ~/setup/rofi ~/.config
 echo "1" | sh ~/.config/polybar/setup.sh
 
 
+mkdir ~/.fonts
+#curl -O https://objects.githubusercontent.com/github-production-release-asset-2e65be/27574418/068dcc12-38b5-4069-aba1-05fb6f0699cf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230306%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230306T062524Z&X-Amz-Expires=300&X-Amz-Signature=5c1a18684fa9cdec646f63172fc390093c0e3633ba3faf1791cd9ca4a1e6198f&X-Amz-SignedHeaders=host&actor_id=105246539&key_id=0&repo_id=27574418&response-content-disposition=attachment%3B%20filename%3DJetBrainsMono.zip&response-content-type=application%2Foctet-stream
+
+
 #after-reboot
 echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ~/after-reboot.txt
 
