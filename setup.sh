@@ -10,7 +10,7 @@ echo " " | sudo dnf upgrade
 sleep 10
 
 #install pkgs
-echo " " | sudo dnf install tldr cmake curl fzf tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty micro tmux
+echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty micro tmux
 
 sleep 60
 
@@ -53,7 +53,8 @@ tar -xf Colloid-teal.tar.xz
 echo "@reboot /~/$USER/startup.sh
 @reboot echo " " | sudo dnf upgrade
 @reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert
-@reboot nix-collect-garbage" | crontab -e
+@reboot nix-collect-garbage
+@reboot echo " " | sudo dnf autoremove" | crontab -e
 
 
 mkdir ~/.config/polybar
@@ -69,17 +70,18 @@ mv ~/setup/rofi ~/.config
 echo "1" | sh ~/.config/polybar/setup.sh
 
 
-
 #after-reboot
-echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.networkmanager_dmenu" > ~/after-reboot.txt
+echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal" > ~/after-reboot.txt
 
 
 #install zsh and ohmyzsh (PUT AT THE END)
-echo " " | sudo dnf install zsh
-echo "/bin/zsh" | sudo lchsh $USER
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
+if command -v curl >/dev/null 2>&1; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
+else
+    sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
+fi
 
-echo " " | sudo reboot
+
+echo Please Reboot!!
 
 
