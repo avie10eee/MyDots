@@ -10,12 +10,12 @@ echo " " | sudo dnf upgrade
 sleep 10
 
 #install pkgs
-echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty micro tmux
+echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty micro tmux xclip
 
 sleep 60
 
 echo " " | sudo mkdir /nix
-chown $USER /nix
+echo " " | chown $USER /nix
 
 #installing nix
 curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
@@ -74,11 +74,12 @@ mkdir ~/.fonts
 #curl -O https://objects.githubusercontent.com/github-production-release-asset-2e65be/27574418/068dcc12-38b5-4069-aba1-05fb6f0699cf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230306%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230306T062524Z&X-Amz-Expires=300&X-Amz-Signature=5c1a18684fa9cdec646f63172fc390093c0e3633ba3faf1791cd9ca4a1e6198f&X-Amz-SignedHeaders=host&actor_id=105246539&key_id=0&repo_id=27574418&response-content-disposition=attachment%3B%20filename%3DJetBrainsMono.zip&response-content-type=application%2Foctet-stream
 
 
+
 #after-reboot
 echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ~/after-reboot.txt
 
 
-#install zsh and ohmyzsh (PUT AT THE END)
+#install zsh4humans (PUT AT THE END)
 if command -v curl >/dev/null 2>&1; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
 else
