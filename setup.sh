@@ -71,7 +71,7 @@ echo "1" | sh ~/.config/polybar/setup.sh
 
 
 #after-reboot
-echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal" > ~/after-reboot.txt
+echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ~/after-reboot.txt
 
 
 #install zsh and ohmyzsh (PUT AT THE END)
