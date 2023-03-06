@@ -10,7 +10,7 @@ echo " " | sudo dnf upgrade
 sleep 10
 
 #install pkgs
-echo " " | sudo dnf install tldr cmake curl fzf tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty micro
+echo " " | sudo dnf install tldr cmake curl fzf tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty micro tmux
 
 sleep 60
 
@@ -46,8 +46,9 @@ tar -xf Moe-Dark.tar.gz
 tar -xf Colloid-teal.tar.xz
 
 
+
+
 #crontab stuff(not sure if it works)
-echo "sh ~/.config/polybar/polybar-themes/simple/material/launch.sh" > statup.sh
 
 echo "@reboot /~/$USER/startup.sh
 @reboot echo " " | sudo dnf upgrade
