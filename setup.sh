@@ -48,8 +48,7 @@ tar -xf Colloid-teal.tar.xz
 
 #crontab stuff(not sure if it works)
 
-echo "@reboot /~/$USER/startup.sh
-@reboot echo " " | sudo dnf upgrade
+echo "@reboot echo " " | sudo dnf upgrade
 @reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert
 @reboot nix-collect-garbage
 @reboot echo " " | sudo dnf autoremove" | crontab -e
@@ -77,6 +76,9 @@ echo "{
 
 #after-reboot
 echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ~/after-reboot.txt
+
+#tmux config
+echo "set -g mouse on" >> ~/.tmux.conf
 
 
 #install zsh4humans (PUT AT THE END)
