@@ -58,7 +58,6 @@ echo "@reboot /~/$USER/startup.sh
 mkdir ~/.config/polybar
 
 #git cloning
-git clone https://github.com/avie10eee/rofi
 git clone https://github.com/adi1090x/polybar-themes "~/.config/polybar"
 git clone https://github.com/catppuccin/alacritty.git "~/.config/alacritty"
 
