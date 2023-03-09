@@ -71,7 +71,7 @@ mkdir ~/.fonts
 echo "{
     "autosave": 1,
     "hlsearch": true
-}" > ~/.config/micro.settings.json
+}" > ~/.config/micro/settings.json
 
 #after-reboot
 echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ~/after-reboot.txt
