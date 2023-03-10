@@ -53,6 +53,7 @@ echo "@reboot echo " " | sudo dnf upgrade
 @reboot nix-collect-garbage
 @reboot echo " " | sudo dnf autoremove" | crontab -e
 
+sleep 60
 
 mkdir ~/.config/polybar
 
@@ -60,9 +61,8 @@ mkdir ~/.config/polybar
 git clone https://github.com/adi1090x/polybar-themes "~/.config/polybar"
 git clone https://github.com/catppuccin/alacritty.git "~/.config/alacritty"
 
-mv ~/setup/rofi "~/.config"
 
-echo "1" | sh ~/.config/polybar/setup.sh
+echo "1" | sh ~/.config/polybar/polybar-themes/setup.sh
 
 
 mkdir ~/.fonts
