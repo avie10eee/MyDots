@@ -16,7 +16,7 @@ echo " " | sudo dnf upgrade
 sleep 10
 
 echo "# Installing selected PKGs #"
-echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero neofetch alacritty micro tmux wl-clipboard kvantum bat flameshot opendoas
+echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero neofetch alacritty micro tmux wl-clipboard kvantum bat flameshot opendoas foot
 
 sleep 60
 
@@ -70,7 +70,8 @@ sleep 60
 #git cloning
 #git clone https://github.com/adi1090x/polybar-themes "~/.config/polybar"
 git clone https://github.com/catppuccin/alacritty.git "~/.config/alacritty"
-
+git clone https://github.com/catppuccin/foot
+mv foot/catppuccin-mocha.conf ~/.config/foot/foot.ini
 
 #echo "1" | sh ~/.config/polybar/polybar-themes/setup.sh
 
