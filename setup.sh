@@ -16,7 +16,7 @@ echo " " | sudo dnf upgrade
 sleep 10
 
 echo "# Installing selected PKGs #"
-echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero autojump neofetch alacritty micro tmux xclip kvantum bat flameshot
+echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero neofetch alacritty micro tmux wl-clipboard kvantum bat flameshot opendoas
 
 sleep 60
 
@@ -79,6 +79,8 @@ mkdir ~/.fonts && mkdir ~/.fonts/truetype
 mv ~/setup/fonts/* ~/.fonts/truetype
 
 
+mv ~/setup/neofetch/config.conf ~/.config/neofetch
+
 echo "# Adding micro configuration #"
 echo "{
     "autosave": 1,
@@ -100,6 +102,8 @@ else
     sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
 fi
 
+echo "neofetch" >> .zshrc
+echo "alias sudo="doas"" >> .zshrc
 
 echo "# Please Reboot!! #"
 
