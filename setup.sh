@@ -16,7 +16,7 @@ echo " " | sudo dnf upgrade
 sleep 10
 
 echo "# Installing selected PKGs #"
-echo " " | sudo dnf install tldr cmake curl tree sl latte-dock fontawesome-fonts fontawesome-fonts-web polybar virt-manager qemu bash coreutils edk2-tools grep jq lsb procps python3 genisoimage usbutils util-linux sed spice-gtk-tools swtpm wget xdg-user-dirs xrandr unzip brasero neofetch alacritty micro tmux wl-clipboard kvantum bat flameshot opendoas foot
+echo " " | sudo dnf install tldr make curl tree sl fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox
 
 sleep 60
 
@@ -46,7 +46,7 @@ echo " " | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm
 sleep 60
 
 # Kde stuff
-#curl stuff: 1=moe-dark-look-and-feel-global-theme 2=colloid-full-icon-theme
+#curling: moe-dark-look-and-feel-global-theme colloid-full-icon-theme
 #curl https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1645543295/Moe-Dark.tar.gz?response-content-disposition=attachment%3B%2520Moe-Dark.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230302%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230302T034956Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=e01c061458c6e8bc5415cf37ed72207212622c18bc12b57aee9d075c44718b25
 #curl https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1639061356/Colloid-teal.tar.xz?response-content-disposition=attachment%3B%2520Colloid-teal.tar.xz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230302%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230302T035348Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=8628932a39e5b7d2893f497ebd322c1e54475d78e13ccf56172990ec84f748eb
 
@@ -70,8 +70,6 @@ sleep 60
 #git cloning
 #git clone https://github.com/adi1090x/polybar-themes "~/.config/polybar"
 git clone https://github.com/catppuccin/alacritty.git "~/.config/alacritty"
-git clone https://github.com/catppuccin/foot
-mv foot/catppuccin-mocha.conf ~/.config/foot/foot.ini
 
 #echo "1" | sh ~/.config/polybar/polybar-themes/setup.sh
 
