@@ -36,7 +36,7 @@ while true: do
             echo "Aborted, skipping..."
             exit
         ;;
-        * ) echo "Y/N";;
+        [ ]* ) echo "Y/N";;
     esac
 done
 
@@ -62,7 +62,7 @@ while true: do
             echo "Aborted, skipping..."
             exit
         ;;
-        * ) echo "Y/N";;
+        []* ) echo "Y/N";;
     esac
 done
 
@@ -96,7 +96,7 @@ while true: do
             echo "Aborted, skipping..."
             exit
         ;;
-        * ) echo "Y/N";;
+        []* ) echo "Y/N";;
     esac
 done
 
@@ -133,7 +133,7 @@ while true: do
             echo "Aborted, skipping..."
             exit
         ;;
-        * ) echo "Y/N";;
+        []* ) echo "Y/N";;
     esac
 done
 
@@ -170,6 +170,8 @@ else
     sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
 fi
 
+
+echo " " | sudo dnf autoremove
 
 echo "alias sudo="doas"" >> .zshrc
 echo "neofetch" >> .zshrc
