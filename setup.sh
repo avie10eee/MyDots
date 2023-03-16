@@ -3,8 +3,9 @@
 echo "##############################"
 echo "# Welcome to PigOS installer #"
 echo "##############################"
-
-sleep 10
+sleep 2
+echo "# Starting install... #"
+sleep 3
 
 echo "# Configuring DNF for speed #"
 echo " " | sudo sh -c 'echo "#added for speed" >> /etc/dnf/dnf.conf'
@@ -14,11 +15,13 @@ echo " " | sudo sh -c 'echo "defaultyes = True" >> /etc/dnf/dnf.conf'
 
 
 echo "# Upgrading your system #"
+sleep 4
 echo " " | sudo dnf upgrade
 
-sleep 10
+sleep 5
 
 echo "# Installing selected PKGs #"
+sleep 4
 echo " " | sudo dnf install tldr make curl tree sl fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox wget
 
 #Installing ocs-url
@@ -38,7 +41,7 @@ while true: do
 done
 
 
-sleep 60
+sleep 5
 
 #Nix install
 while true: do
@@ -63,7 +66,7 @@ while true: do
     esac
 done
 
-sleep 60
+sleep 5
 
 echo "# Enabling RPM-Fusion repositories #"
 sleep 3
@@ -75,20 +78,37 @@ echo " " | sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --e
 echo " " | sudo dnf groupupdate sound-and-video
 echo " " | sudo dnf install intel-media-driver
 
-sleep 60
+sleep 5
 
 #Hyprland
 #echo " " | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
 #git clone --recursive https://github.com/hyprwm/Hyprland
 
+#Installing ocs-url
+while true: do
+    read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N" hyprinst
+    case $hyprinst in
+        [Yy]* ) 
+            echo "Installing..."
+            echo " " | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
+        ;;
+        [Nn]* ) 
+            echo "Aborted, skipping..."
+            exit
+        ;;
+        * ) echo "Y/N";;
+    esac
+done
+
+sleep 2
 
 #crontab stuff(not sure if it works)
 echo "# Updating Cron jobs to update on reboot #"
-sleep 5
+sleep 2
 echo "@reboot echo " " | sudo dnf upgrade
 @reboot echo " " | sudo dnf autoremove" | crontab -e
 
-sleep 60
+sleep 5
 
 #mkdir ~/.config/polybar
 
@@ -117,9 +137,7 @@ while true: do
     esac
 done
 
-
-
-
+sleep 2
 
 mv ~/setup/neofetch/config.conf ~/.config/neofetch
 
@@ -144,6 +162,7 @@ echo "set -g mouse on" >> ~/.tmux.conf
 
 
 echo "# Installing ZSH for Humans #"
+sleep 2
 #install zsh4humans (PUT AT THE END)
 if command -v curl >/dev/null 2>&1; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
