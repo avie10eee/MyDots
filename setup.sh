@@ -9,7 +9,7 @@ sleep 10
 echo "# Configuring DNF for speed #"
 echo " " | sudo sh -c 'echo "#added for speed" >> /etc/dnf/dnf.conf'
 echo " " | sudo sh -c 'echo "fastestmirror = True" >> /etc/dnf/dnf.conf'
-echo " " | sudo sh -c 'echo "max_parallel_downloads = 5 = True" >> /etc/dnf/dnf.conf'
+echo " " | sudo sh -c 'echo "max_parallel_downloads = 5" >> /etc/dnf/dnf.conf'
 echo " " | sudo sh -c 'echo "defaultyes = True" >> /etc/dnf/dnf.conf'
 
 
