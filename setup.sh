@@ -4,6 +4,7 @@ echo "##############################"
 echo "# Welcome to PigOS installer #"
 echo "##############################"
 
+sleep 10
 
 echo "# Configuring DNF for speed #"
 echo " " | sudo sh -c 'echo "#added for speed" >> /etc/dnf/dnf.conf'
@@ -11,29 +12,61 @@ echo " " | sudo sh -c 'echo "fastestmirror = True" >> /etc/dnf/dnf.conf'
 echo " " | sudo sh -c 'echo "max_parallel_downloads = 5 = True" >> /etc/dnf/dnf.conf'
 echo " " | sudo sh -c 'echo "defaultyes = True" >> /etc/dnf/dnf.conf'
 
+
 echo "# Upgrading your system #"
 echo " " | sudo dnf upgrade
+
 sleep 10
 
 echo "# Installing selected PKGs #"
-echo " " | sudo dnf install tldr make curl tree sl fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox
+echo " " | sudo dnf install tldr make curl tree sl fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox wget
+
+#Installing ocs-url
+while true: do
+    read -p "Would you like to install ocs-url (recommended) Y/N" yesno
+    case $yesno in
+        [Yy]* ) 
+            echo "Installing..."
+            echo " " | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm
+        ;;
+        [Nn]* ) 
+            echo "Aborted, skipping..."
+            exit
+        ;;
+        * ) echo "Y/N";;
+    esac
+done
+
 
 sleep 60
 
-echo "# Starting NIX Package Manager installation #"
-echo " " | sudo mkdir /nix
-echo " " | chown $USER /nix
-
-#installing nix
-curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+#Nix install
+while true: do
+    read -p "would you like to install NIX Package Manager Y/N" nixinst
+    case $nixinst in
+        [Yy]* ) 
+            echo "# Starting NIX Package Manager installation... #"
+            echo " " | sudo mkdir /nix
+            echo " " | chown $USER /nix
+            curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
+            sleep 45
+            #linking nix apps to usr/share/applications
+            echo " " | sudo ln -s /nix/var/nix/profiles/per-user/$USER/profile/share/applications /usr/share/applications
+            echo "@reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert
+            @reboot nix-collect-garbage" | crontab -e
+        ;;
+        [Nn]* ) 
+            echo "Aborted, skipping..."
+            exit
+        ;;
+        * ) echo "Y/N";;
+    esac
+done
 
 sleep 60
-
-#linking nix apps to usr/share/applications
-echo " " | sudo ln -s /nix/var/nix/profiles/per-user/$USER/profile/share/applications /usr/share/applications
-
 
 echo "# Enabling RPM-Fusion repositories #"
+sleep 3
 #enabling rpm-fusion
 echo " " | sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 echo " " | sudo dnf groupupdate core
@@ -41,30 +74,22 @@ echo " " | sudo dnf groupupdate core
 echo " " | sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 echo " " | sudo dnf groupupdate sound-and-video
 echo " " | sudo dnf install intel-media-driver
-echo " " | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm
 
 sleep 60
 
-# Kde stuff
-#curling: moe-dark-look-and-feel-global-theme colloid-full-icon-theme
-#curl https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1645543295/Moe-Dark.tar.gz?response-content-disposition=attachment%3B%2520Moe-Dark.tar.gz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230302%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230302T034956Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=e01c061458c6e8bc5415cf37ed72207212622c18bc12b57aee9d075c44718b25
-#curl https://ocs-dl.fra1.cdn.digitaloceanspaces.com/data/files/1639061356/Colloid-teal.tar.xz?response-content-disposition=attachment%3B%2520Colloid-teal.tar.xz&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=RWJAQUNCHT7V2NCLZ2AL%2F20230302%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230302T035348Z&X-Amz-SignedHeaders=host&X-Amz-Expires=60&X-Amz-Signature=8628932a39e5b7d2893f497ebd322c1e54475d78e13ccf56172990ec84f748eb
-
-#unzip curl stuff
-#tar -xf Moe-Dark.tar.gz
-#tar -xf Colloid-teal.tar.xz
+#Hyprland
+#echo " " | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
+#git clone --recursive https://github.com/hyprwm/Hyprland
 
 
 #crontab stuff(not sure if it works)
 echo "# Updating Cron jobs to update on reboot #"
+sleep 5
 echo "@reboot echo " " | sudo dnf upgrade
-@reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert
-@reboot nix-collect-garbage
 @reboot echo " " | sudo dnf autoremove" | crontab -e
 
 sleep 60
 
-#uncomment if using kde
 #mkdir ~/.config/polybar
 
 #git cloning
@@ -73,12 +98,31 @@ git clone https://github.com/catppuccin/alacritty.git "~/.config/alacritty"
 
 #echo "1" | sh ~/.config/polybar/polybar-themes/setup.sh
 
-echo "# Adding Nerd fonts to ~/.fonts/truetype #"
-mkdir ~/.fonts && mkdir ~/.fonts/truetype
-mv ~/setup/fonts/* ~/.fonts/truetype
+while true: do
+    read -p "Would you like to install JetBrainsMono.zip Y/N" fontinst
+    case $fontinst in
+        [Yy]* ) 
+            echo "# Adding Nerd fonts to ~/.fonts/truetype #"
+            sleep 5
+            mkdir ~/.fonts && mkdir ~/.fonts/truetype
+            wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+            mv JetBrainsMono.zip ~/.fonts/truetype
+            unzip ~/.fonts/truetype/JetBrainsMono.zip
+        ;;
+        [Nn]* ) 
+            echo "Aborted, skipping..."
+            exit
+        ;;
+        * ) echo "Y/N";;
+    esac
+done
+
+
+
 
 
 mv ~/setup/neofetch/config.conf ~/.config/neofetch
+
 
 echo "# Adding micro configuration #"
 echo "{
@@ -86,8 +130,14 @@ echo "{
     "hlsearch": true
 }" > ~/.config/micro/settings.json
 
+
 #after-reboot
-echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ~/after-reboot.txt
+echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ~/postinst.txt
+echo "cd Hyprland
+meson _build
+ninja -C _build
+sudo ninja -C _build install" > ~/hyprinstall
+
 
 #tmux config
 echo "set -g mouse on" >> ~/.tmux.conf
@@ -101,8 +151,9 @@ else
     sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
 fi
 
-echo "neofetch" >> .zshrc
+
 echo "alias sudo="doas"" >> .zshrc
+echo "neofetch" >> .zshrc
 
 echo "# Please Reboot!! #"
 
