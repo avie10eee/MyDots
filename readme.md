@@ -4,7 +4,7 @@ This script will do the following:
 
     2. Upgrade your system
 
-    3. Install some packages ( tldr make curl tree sl   fontawesome-fonts fontawesome-fonts-web sed unzip neofetch  alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox wget)
+    3. Install some packages ( tldr make curl tree sl   fontawesome-fonts fontawesome-fonts-web sed unzip neofetch  alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox wget wlogout swaylock)
 
     4. Install ocs-url
 
