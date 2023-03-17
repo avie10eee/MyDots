@@ -48,7 +48,7 @@ sleep 5
     case $nixinst in
         y|Y ) echo "# Starting NIX Package Manager installation... #"
             echo "$pass" | sudo mkdir /nix
-            chown "$HOME" /nix
+            chown "$USER" /nix
             curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
             sleep 45
             #linking nix apps to usr/share/applications
@@ -103,9 +103,9 @@ git clone https://github.com/catppuccin/alacritty.git '$HOME/.config/alacritty'
 #echo "1" | sh "$HOME"/.config/polybar/polybar-themes/setup.sh
 
 while true; do
-    read -p "Would you like to install JetBrainsMono.zip Y/N " fontinst
+    read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
     case $fontinst in
-        y|Y ) echo "# Adding Nerd fonts to "$HOME"/.fonts/truetype #"; sleep 5; mkdir "$HOME"/.fonts && mkdir "$HOME"/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; mv JetBrainsMono.zip "$HOME"/.fonts/truetype; unzip "$HOME"/.fonts/truetype/JetBrainsMono.zip;;
+        y|Y ) echo "# Adding Nerd fonts to "$HOME"/.fonts/truetype #"; mkdir "$HOME"/.fonts && mkdir "$HOME"/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; mv JetBrainsMono.zip "$HOME"/.fonts/truetype; unzip "$HOME"/.fonts/truetype/JetBrainsMono.zip;;
         n|N ) echo "Aborted, skipping..."
     esac
 
