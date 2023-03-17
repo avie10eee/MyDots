@@ -40,8 +40,6 @@ while true: do
         [Nn]* ) 
             echo "Aborted, skipping..."
             exit
-        ;;
-        [ ]* ) echo "Y/N";;
     esac
 done
 
@@ -66,8 +64,6 @@ while true: do
         [Nn]* ) 
             echo "Aborted, skipping..."
             exit
-        ;;
-        []* ) echo "Y/N";;
     esac
 done
 
@@ -100,8 +96,6 @@ while true: do
         [Nn]* ) 
             echo "Aborted, skipping..."
             exit
-        ;;
-        []* ) echo "Y/N";;
     esac
 done
 
@@ -137,8 +131,6 @@ while true: do
         [Nn]* ) 
             echo "Aborted, skipping..."
             exit
-        ;;
-        []* ) echo "Y/N";;
     esac
 done
 
