@@ -73,11 +73,10 @@ echo "$pass" | sudo dnf install intel-media-driver
 
 sleep 5
 
-#Hyprland
-echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
 
 
-#hyprland dependencies
+
+#hyprland dependencies and git clone
     read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N " hyprinst
     case $hyprinst in
         y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel; git clone --recursive https://github.com/hyprwm/Hyprland;;
