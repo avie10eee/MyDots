@@ -74,13 +74,13 @@ echo "$pass" | sudo dnf install intel-media-driver
 sleep 5
 
 #Hyprland
-#echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
-#git clone --recursive https://github.com/hyprwm/Hyprland
+echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
+
 
 #hyprland dependencies
     read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N " hyprinst
     case $hyprinst in
-        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel;;
+        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel; git clone --recursive https://github.com/hyprwm/Hyprland;;
         n|N ) echo "Aborted, skipping..."
     esac
 
@@ -142,10 +142,16 @@ else
 fi
 
 
-echo "$pass" | sudo dnf autoremove
+
 
 echo "alias sudo='doas'" >> .zshrc
 echo "neofetch" >> .zshrc
+
+echo "# Running cleanup #"
+echo "$pass" | sudo dnf autoremove
+
+
+
 
 echo "# Please Reboot!! #"
 
