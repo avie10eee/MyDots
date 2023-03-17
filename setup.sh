@@ -48,7 +48,7 @@ sleep 5
     case $nixinst in
         y|Y ) echo "# Starting NIX Package Manager installation... #"
             echo "$pass" | sudo mkdir /nix
-            chown "$USER" /nix
+            sudo chown "$USER" /nix
             curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
             sleep 45
             #linking nix apps to usr/share/applications
