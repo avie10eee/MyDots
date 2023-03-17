@@ -101,34 +101,8 @@ git clone https://github.com/catppuccin/alacritty.git '$HOME/.config/alacritty'
 
 #echo "1" | sh "$HOME"/.config/polybar/polybar-themes/setup.sh
 
-while true; do
-    read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
-    case $fontinst in
-        y|Y ) echo "# Adding Nerd fonts to "$HOME"/.fonts/truetype #"; mkdir "$HOME"/.fonts && mkdir "$HOME"/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; mv JetBrainsMono.zip "$HOME"/.fonts/truetype; unzip "$HOME"/.fonts/truetype/JetBrainsMono.zip;;
-        n|N ) echo "Aborted, skipping..."
-    esac
-
 
 mv "$HOME"/setup/neofetch/config.conf "$HOME"/.config/neofetch
-
-
-echo "# Adding micro configuration #"
-echo "{
-    'autosave': 1,
-    'hlsearch': true
-}" > "$HOME"/.config/micro/settings.json
-
-
-#after-reboot
-echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > "$HOME"/postinst.txt
-echo "cd Hyprland
-meson _build
-ninja -C _build
-sudo ninja -C _build install" > "$HOME"/hyprinstall
-
-
-#tmux config
-echo "set -g mouse on" >> "$HOME"/.tmux.conf
 
 
 echo "# Installing ZSH for Humans #"
@@ -141,15 +115,8 @@ else
 fi
 
 
-
-
-echo "alias sudo='doas'" >> .zshrc
-echo "neofetch" >> .zshrc
-
 echo "# Running cleanup #"
 echo "$pass" | sudo dnf autoremove
-
-
 
 
 echo "# Please Reboot!! #"
