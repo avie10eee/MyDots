@@ -8,7 +8,7 @@ echo "# Welcome to PigOS installer #"
 echo "##############################"
 sleep 2
 echo "please enter your password"
-read -sp "Password: " pass
+read -sp "Password: " pass \n
 echo "# Starting install... #"
 sleep 3
 
@@ -27,31 +27,23 @@ sleep 5
 
 echo "# Installing selected PKGs #"
 sleep 4
-echo $pass | sudo dnf install tldr make curl tree sl fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox wget
+echo $pass | sudo dnf install tldr make curl tree sl fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox wget wlogout swaylock
 
 #Installing ocs-url
-while true: do
     read -p "Would you like to install ocs-url (recommended) Y/N" yesno
     case $yesno in
-        [Yy]* ) 
-            echo "Installing..."
-            echo $pass | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm
-        ;;
-        [Nn]* ) 
-            echo "Aborted, skipping..."
-            exit
+        y|Y ) echo "Installing..."; echo $pass | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm;;
+        n|N ) echo "Aborted, skipping...";;
     esac
-done
+
 
 
 sleep 5
 
 #Nix install
-while true: do
     read -p "would you like to install NIX Package Manager Y/N" nixinst
     case $nixinst in
-        [Yy]* ) 
-            echo "# Starting NIX Package Manager installation... #"
+        y|Y ) echo "# Starting NIX Package Manager installation... #"
             echo $pass | sudo mkdir /nix
             echo $pass | chown $USER /nix
             curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
@@ -61,11 +53,8 @@ while true: do
             echo "@reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert
             @reboot nix-collect-garbage" | crontab -e
         ;;
-        [Nn]* ) 
-            echo "Aborted, skipping..."
-            exit
+        n|N ) echo "Aborted, skipping..."
     esac
-done
 
 sleep 5
 
@@ -85,19 +74,12 @@ sleep 5
 #echo $pass | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
 #git clone --recursive https://github.com/hyprwm/Hyprland
 
-#Installing ocs-url
-while true: do
+#hyprland dependencies
     read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N" hyprinst
     case $hyprinst in
-        [Yy]* ) 
-            echo "Installing..."
-            echo $pass | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel
-        ;;
-        [Nn]* ) 
-            echo "Aborted, skipping..."
-            exit
+        y|Y ) echo "Installing..."; echo $pass | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel;;
+        n|N ) echo "Aborted, skipping..."
     esac
-done
 
 sleep 2
 
@@ -120,21 +102,10 @@ git clone https://github.com/catppuccin/alacritty.git "~/.config/alacritty"
 while true: do
     read -p "Would you like to install JetBrainsMono.zip Y/N" fontinst
     case $fontinst in
-        [Yy]* ) 
-            echo "# Adding Nerd fonts to ~/.fonts/truetype #"
-            sleep 5
-            mkdir ~/.fonts && mkdir ~/.fonts/truetype
-            wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
-            mv JetBrainsMono.zip ~/.fonts/truetype
-            unzip ~/.fonts/truetype/JetBrainsMono.zip
-        ;;
-        [Nn]* ) 
-            echo "Aborted, skipping..."
-            exit
+        y|Y ) echo "# Adding Nerd fonts to ~/.fonts/truetype #"; sleep 5; mkdir ~/.fonts && mkdir ~/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; mv JetBrainsMono.zip ~/.fonts/truetype; unzip ~/.fonts/truetype/JetBrainsMono.zip;;
+        n|N ) echo "Aborted, skipping..."
     esac
-done
 
-sleep 2
 
 mv ~/setup/neofetch/config.conf ~/.config/neofetch
 
