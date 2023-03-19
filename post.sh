@@ -28,7 +28,8 @@ echo "neofetch" >> .zshrc
 while true; do
     read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
     case $fontinst in
-        y|Y ) echo "# Adding Nerd fonts to "$HOME"/.fonts/truetype #"; mkdir "$HOME"/.fonts && mkdir "$HOME"/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; mv JetBrainsMono.zip "$HOME"/.fonts/truetype; unzip "$HOME"/.fonts/truetype/JetBrainsMono.zip;;
+        y|Y ) echo "# Adding Nerd fonts to "$HOME"/.fonts/truetype #"; mkdir "$HOME"/.fonts && mkdir "$HOME"/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; unzip "$HOME"/JetBrainsMono.zip -d "$HOME"/.fonts/truetype;;
         n|N ) echo "Aborted, skipping..."
     esac
 
+done
