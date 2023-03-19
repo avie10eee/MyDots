@@ -142,5 +142,3 @@ echo "$pass" | sudo dnf autoremove
 echo "# Please Reboot!! #"
 
 sleep 8
-
-done
