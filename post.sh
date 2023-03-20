@@ -56,5 +56,8 @@ while true; do
         y|Y ) echo "# Adding Nerd fonts to "$HOME"/.fonts/truetype #"; mkdir "$HOME"/.fonts && mkdir "$HOME"/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; unzip "$HOME"/JetBrainsMono.zip -d "$HOME"/.fonts/truetype;;
         n|N ) echo "Aborted, skipping..."
     esac
-
 done
+
+echo "Configuring doas"
+echo "add the following to /etc/doas.conf" > doas.txt
+echo "permit persist keepenv ${USER} as root" >> doas.txt

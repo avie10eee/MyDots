@@ -160,31 +160,6 @@ sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
 
 sleep 3
 
-echo "Configuring zshrc"
-echo "Adding exports"
-sleep 2
-echo 'export TERM="xterm-256color"' >> .zshrc
-echo 'export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"' >> .zshrc
-echo 'export EDITOR="micro"' >> .zshrc
-sleep 2
-
-echo "Adding .config to xdg config home"
-
-sleep 2
-
-echo 'if [ -z "$XDG_CONFIG_HOME" ] ; then
-    export XDG_CONFIG_HOME="$HOME/.config"'
-
-echo "Adding aliases"
-sleep 2
-echo "ls='exa -l --color=always --group-directories-first'" >> .zshrc
-echo "la='exa -al --color=always --group-directories-first'" >> .zshrc
-
-echo "colorscript -r" >> .zshrc
-
-echo "Configuring doas"
-echo "permit ${USER} as root" > /etc/doas.conf
-
 
 echo "# Running cleanup #"
 echo "$pass" | sudo dnf autoremove
