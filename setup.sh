@@ -41,13 +41,36 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo
+echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo zsh-syntax-highlighting exa
+
+read -p "Would you like to use DT's colorscripts " colorsc
+case $colorsc in
+    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf copr enable foopsss/shell-color-scripts; echo "$pass" | sudo dnf install shell-color-scripts;;
+    n|N ) echo "Aborted, skipping...";;
+esac
+
+if [$colorsc = 'y']; then
+    echo "# Configuring DT's colorscripts"
+    sleep 2
+    colorscript -b xmonad
+    colorscript -b tiefighter2
+    colorscript -b tiefighter1row
+    colorscript -b tifighter1
+    colorscript -b thebat2
+    colorscript -b spectrum
+    colorscript -b pukeskull
+    colorscript -b mouseface2
+    colorscript -b guns
+    colorscript -b colorbars
+    colorscript -b bloks
+    colorscript -b blok
+fi
+
 
 sleep 2
 
 
-
-read -p "Would you like to use wayland Y/N " wayl
+read -p "Would you like to install wayland packages (why not?) Y/N " wayl
 case $yesno in
     y|Y ) echo "Installing..."; echo $pass | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr;;
     n|N ) echo "Aborted, skipping...";;
@@ -113,26 +136,54 @@ echo '@reboot echo "$pass" | sudo dnf upgrade
 
 sleep 5
 
-#mkdir "$HOME"/.config/polybar
+mkdir "$HOME"/.config/polybar
 
 #git cloning
-#git clone https://github.com/adi1090x/polybar-themes '$HOME/.config/polybar'
+git clone https://github.com/adi1090x/polybar-themes '$HOME/.config/polybar'
 git clone https://github.com/catppuccin/alacritty.git '$HOME/.config/alacritty'
 
-#echo "1" | sh "$HOME"/.config/polybar/polybar-themes/setup.sh
+echo "1" | sh "$HOME"/.config/polybar/polybar-themes/setup.sh
 
 
 mv "$HOME"/setup/neofetch/config.conf "$HOME"/.config/neofetch
 
 
-echo "# Installing ZSH for Humans #"
+#install zsh and ohmyzsh (PUT AT THE END)
+
+echo " " | sudo dnf install zsh
+echo "/bin/zsh" | sudo lchsh $USER
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+sleep 5
+
+sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
+
+sleep 3
+
+echo "Configuring zshrc"
+echo "Adding exports"
 sleep 2
-#install zsh4humans (PUT AT THE END)
-if command -v curl >/dev/null 2>&1; then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
-else
-    sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
-fi
+echo 'export TERM="xterm-256color"' >> .zshrc
+echo 'export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"' >> .zshrc
+echo 'export EDITOR="micro"' >> .zshrc
+sleep 2
+
+echo "Adding .config to xdg config home"
+
+sleep 2
+
+echo 'if [ -z "$XDG_CONFIG_HOME" ] ; then
+    export XDG_CONFIG_HOME="$HOME/.config"'
+
+echo "Adding aliases"
+sleep 2
+echo "ls='exa -l --color=always --group-directories-first'" >> .zshrc
+echo "la='exa -al --color=always --group-directories-first'" >> .zshrc
+
+echo "colorscript -r" >> .zshrc
+
+echo "Configuring doas"
+echo "permit ${USER} as root" > /etc/doas.conf
 
 
 echo "# Running cleanup #"

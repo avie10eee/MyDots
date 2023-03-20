@@ -22,8 +22,33 @@ sudo ninja -C _build install" > "$HOME"/hyprinstall
 #tmux config
 echo "set -g mouse on" >> "$HOME"/.tmux.conf
 
+#zshrc
+echo "Configuring zshrc"
+echo "Adding exports"
+sleep 2
+echo 'export TERM="xterm-256color"' >> .zshrc
+echo 'export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"' >> .zshrc
+echo 'export EDITOR="micro"' >> .zshrc
+sleep 2
+
+echo "Adding .config to xdg config home"
+
+sleep 2
+
+echo 'if [ -z "$XDG_CONFIG_HOME" ] ; then'
+echo '    export XDG_CONFIG_HOME="$HOME/.config"'
+
+echo "Adding aliases"
+
+sleep 2
+
+echo "alias ls='exa -l --color=always --group-directories-first'" >> .zshrc
+echo "alias la='exa -al --color=always --group-directories-first'" >> .zshrc
 echo "alias sudo='doas'" >> .zshrc
+echo "alias cat='bat'"
+echo "alias grep='grep --color=auto'"
 echo "neofetch" >> .zshrc
+echo "colorscript -r" >> .zshrc
 
 while true; do
     read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
