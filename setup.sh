@@ -78,7 +78,7 @@ esac
 
 sleep 2
 
-if [ $wayl = 'y' ]; then
+if [ "$wayl" = 'y' ]; then
     #hyprland dependencies and git clone
     read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N " hyprinst
     case $hyprinst in
@@ -135,7 +135,7 @@ sleep 5
 echo "# Updating Cron jobs to update on reboot #"
 sleep 2
 echo "@reboot echo $pass | sudo dnf upgrade" >> cfile
-echo "@reboot echo $pass | sudo dnf autoremove' >> cfile
+echo "@reboot echo $pass | sudo dnf autoremove" >> cfile
 
 sleep 5
 
@@ -156,7 +156,7 @@ mv "$HOME"/setup/neofetch/config.conf "$HOME"/.config/neofetch
 #install zsh and ohmyzsh (PUT AT THE END)
 
 echo " " | sudo dnf install zsh
-echo "/bin/zsh" | sudo lchsh $USER
+echo "/bin/zsh" | sudo lchsh "$USER"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 sleep 5
