@@ -12,11 +12,11 @@ echo "{
 
 
 #after-reboot
-echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > "$HOME"/postinst.txt
-echo "cd Hyprland
-meson _build
-ninja -C _build
-sudo ninja -C _build install" > "$HOME"/hyprinstall
+#echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > "$HOME"/postinst.txt
+#echo "cd Hyprland
+#meson _build
+#ninja -C _build
+#sudo ninja -C _build install" > "$HOME"/hyprinstall
 
 
 #tmux config
@@ -58,6 +58,7 @@ while true; do
     esac
 done
 
+#doas
 echo "Configuring doas"
 echo "add the following to /etc/doas.conf" > doas.txt
 echo "permit persist keepenv ${USER} as root" >> doas.txt
