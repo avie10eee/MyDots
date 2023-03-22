@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 
-
+cron=$(crontab -l)
 
 echo "##############################"
 echo "# Welcome to PigOS installer #"
@@ -49,7 +49,7 @@ case $colorsc in
     n|N ) echo "Aborted, skipping...";;
 esac
 
-if [$colorsc = 'y']; then
+if [ "$colorsc" = 'y' ]; then
     echo "# Configuring DT's colorscripts"
     sleep 2
     colorscript -b xmonad
@@ -72,7 +72,7 @@ sleep 2
 
 read -p "Would you like to install wayland packages (why not?) Y/N " wayl
 case $yesno in
-    y|Y ) echo "Installing..."; echo $pass | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr;;
+    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr;;
     n|N ) echo "Aborted, skipping...";;
 esac
 
@@ -83,7 +83,7 @@ if [ $wayl = 'y' ]; then
     read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N " hyprinst
     case $hyprinst in
         y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel; git clone --recursive https://github.com/hyprwm/Hyprland;;
-        n|N ) echo "Aborted, skipping..."
+        n|N ) echo "Aborted, skipping...";;
     esac
 fi
 
@@ -103,15 +103,18 @@ sleep 5
 #Nix install
 read -p "would you like to install NIX Package Manager Y/N " nixinst
 case $nixinst in
-    y|Y ) echo "# Starting NIX Package Manager installation... #"
-        echo "$pass" | sudo mkdir /nix
-        sudo chown "$USER" /nix
-        curl -L https://nixos.org/nix/install | sh -s -- --no-daemon
-        sleep 45
+    y|Y ) echo "# Starting NIX Package Manager installation... #";
+        echo "$pass" | sudo mkdir /nix;
+        sudo chown "$USER" /nix;
+        curl -L https://nixos.org/nix/install | sh -s -- --no-daemon;
+        sleep 45;
         #linking nix apps to usr/share/applications
-        echo "$pass" | sudo ln -s /nix/var/nix/profiles/per-user/"$HOME"/profile/share/applications /usr/share/applications
-        echo "@reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert @reboot nix-collect-garbage" | crontab -e;;
-    n|N ) echo "Aborted, skipping..."
+        echo "$pass" | sudo ln -s /nix/var/nix/profiles/per-user/"$HOME"/profile/share/applications /usr/share/applications;
+        #adding nix stuff to cron
+        echo cron > cfile;
+        echo "@reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert" >> cfile;
+        echo "@reboot nix-collect-garbage" >> cfile;;
+    n|N ) echo "Aborted, skipping...";;
 esac
 
 sleep 5
@@ -131,21 +134,23 @@ sleep 5
 #crontab stuff(not sure if it works)
 echo "# Updating Cron jobs to update on reboot #"
 sleep 2
-echo '@reboot echo "$pass" | sudo dnf upgrade 
-@reboot echo "$pass" | sudo dnf autoremove' | crontab -e
+echo "@reboot echo $pass | sudo dnf upgrade" >> cfile
+echo "@reboot echo $pass | sudo dnf autoremove' >> cfile
 
 sleep 5
 
 mkdir "$HOME"/.config/polybar
 
 #git cloning
-git clone https://github.com/adi1090x/polybar-themes '$HOME/.config/polybar'
-git clone https://github.com/catppuccin/alacritty.git '$HOME/.config/alacritty'
+git clone https://github.com/adi1090x/polybar-themes "$HOME/.config/polybar"
+git clone https://github.com/catppuccin/alacritty.git "$HOME/.config/alacritty"
 
 echo "1" | sh "$HOME"/.config/polybar/polybar-themes/setup.sh
 
 
 mv "$HOME"/setup/neofetch/config.conf "$HOME"/.config/neofetch
+
+
 
 
 #install zsh and ohmyzsh (PUT AT THE END)
@@ -156,10 +161,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 sleep 5
 
-sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc
+sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k"' "$HOME"/.zshrc
 
 sleep 3
 
+#adding all changes to crontab
+crontab cfile
 
 echo "# Running cleanup #"
 echo "$pass" | sudo dnf autoremove
