@@ -1,29 +1,57 @@
-This script will do the following:
 
-    1. Add "fastestmirror = True, max_parallel_downloads = 5 and defaultyes = True" to etc/dnf/dnf.conf
+root-setup.sh (Run first) will do the following:
+
+    1. Setup your user
+
+    2. Add user to sudo 
+
+    3. Set password for user
+
+<hr />
+
+setup.sh will do the following:
+
+    1. Configures DNF for speed
 
     2. Upgrade your system
 
-    3. Install some packages ( tldr make curl tree sl   fontawesome-fonts fontawesome-fonts-web sed unzip neofetch  alacritty micro tmux wl-clipboard bat flameshot opendoas kf5-krunner pipewire grim bluez Thunar firefox wget wlogout swaylock)
+    3. ask if you would like to use DT's colorscripts
 
-    4. Install ocs-url
+    5. ask if you would like to to use wayland packages and if you would like to install hyprland WM
 
-    5. Install nix package manager
+    6. Install some packages ( tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo zsh-syntax-highlighting exa)
 
-    6. Enable RPM-Fusion
+    7. Install ocs-url
 
-    7. Add Cron jobs that will upgrade your system and run autoremove
+    8. Install nix package manager
 
-    8. Clone catpuccin alacritty config and move it to .config/alacritty
+    9. Enable RPM-Fusion
 
-    9. Install jetbrains-mono nerd font
+    10. Add Cron jobs that will upgrade your system and run autoremove
 
-    10. Add autosave and highlight text to .config/micro/settings.json
+    11. Clone catpuccin alacritty theme and move it to .config/alacritty
 
-    11. Add mouse mode to .tmux.conf
+    12. Clone polybar-themes and move it to .config/polybar
 
-    12. Install zsh4humans
+    13. Clone powerlevel10k zsh theme
 
-    13. Add alias for opendoas (alias sudo="doas") 
+    14. Run Polybar-Themes installer
 
-    14. Add neofetch to zshrc
+    15. Install ZSH and Oh My ZSH
+
+    16. Append changes to crontab
+
+    17. Run cleanup
+
+
+<hr />
+
+post.sh (Run last) will do the following:
+
+    1. Configure Micro text editor
+
+    2. Configure Tmux
+
+    3. Configure ZSH
+
+    4. Configure Doas

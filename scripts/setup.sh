@@ -144,6 +144,7 @@ mkdir "$HOME"/.config/polybar
 #git cloning
 git clone https://github.com/adi1090x/polybar-themes "$HOME/.config/polybar"
 git clone https://github.com/catppuccin/alacritty.git "$HOME/.config/alacritty"
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 echo "1" | sh "$HOME"/.config/polybar/polybar-themes/setup.sh
 

@@ -4,6 +4,8 @@ echo "################################"
 echo "# this is post PigOS installer #"
 echo "################################"
 
+rm cfile
+
 echo "# Adding micro configuration #"
 echo "{
     'autosave': 1,
