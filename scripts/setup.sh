@@ -41,7 +41,7 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo zsh-syntax-highlighting exa
+echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo zsh-syntax-highlighting exa acpi lxqt-archiver meson cmake gotop conky
 
 read -p "Would you like to use DT's colorscripts " colorsc
 case $colorsc in
@@ -72,7 +72,7 @@ sleep 2
 
 read -p "Would you like to install wayland packages (why not?) Y/N " wayl
 case $yesno in
-    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr;;
+    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber ;;
     n|N ) echo "Aborted, skipping...";;
 esac
 
