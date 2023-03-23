@@ -41,7 +41,7 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo zsh-syntax-highlighting exa acpi lxqt-archiver meson cmake gotop conky
+echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake gotop conky
 
 read -p "Would you like to use DT's colorscripts " colorsc
 case $colorsc in
@@ -109,7 +109,7 @@ case $nixinst in
         curl -L https://nixos.org/nix/install | sh -s -- --no-daemon;
         sleep 45;
         #linking nix apps to usr/share/applications
-        echo "$pass" | sudo ln -s /nix/var/nix/profiles/per-user/"$HOME"/profile/share/applications /usr/share/applications;
+        echo "$pass" | sudo ln -s /nix/var/nix/profiles/per-user/${HOME}/profile/share/applications /usr/share/applications;
         #adding nix stuff to cron
         echo cron > cfile;
         echo "@reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert" >> cfile;
@@ -139,17 +139,20 @@ echo "@reboot echo $pass | sudo dnf autoremove" >> cfile
 
 sleep 5
 
-mkdir "$HOME"/.config/polybar
+mkdir ${HOME}/.config/polybar
 
 #git cloning
 git clone https://github.com/adi1090x/polybar-themes "$HOME/.config/polybar"
 git clone https://github.com/catppuccin/alacritty.git "$HOME/.config/alacritty"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlig
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-echo "1" | sh "$HOME"/.config/polybar/polybar-themes/setup.sh
+
+echo "1" | sh ${HOME}/.config/polybar/polybar-themes/setup.sh
 
 
-mv "$HOME"/setup/neofetch/config.conf "$HOME"/.config/neofetch
+mv ${HOME}/setup/neofetch/config.conf ${HOME}/.config/neofetch
 
 
 
@@ -162,7 +165,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 sleep 5
 
-sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k"' "$HOME"/.zshrc
+sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k/"' ${HOME}/.zshrc
+sed -i 's/plugins=(git)/plugins=(zsh-syntax-highlighting zsh-autosuggestions)/' .zshrc
 
 sleep 3
 
