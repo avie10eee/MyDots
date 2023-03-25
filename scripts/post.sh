@@ -13,14 +13,6 @@ echo "{
 }" > ${HOME}/.config/micro/settings.json
 
 
-#after-reboot
-#echo "nix-env -iA nixpkgs.quickemu nixpkgs.pywal nixpkgs.tty-clock" > ${HOME}/postinst.txt
-#echo "cd Hyprland
-#meson _build
-#ninja -C _build
-#sudo ninja -C _build install" > ${HOME}/hyprinstall
-
-
 #tmux config
 echo "set -g mouse on" >> ${HOME}/.tmux.conf
 
@@ -37,8 +29,8 @@ echo "Adding .config to xdg config home"
 
 sleep 2
 
-echo 'if [ -z "$XDG_CONFIG_HOME" ] ; then'
-echo '    export XDG_CONFIG_HOME="$HOME/.config"'
+echo 'if [ -z "$XDG_CONFIG_HOME" ] ; then' >> .zshrc
+echo '    export XDG_CONFIG_HOME="$HOME/.config"' >> .zshrc
 
 echo "Adding aliases"
 
@@ -47,20 +39,22 @@ sleep 2
 echo "alias ls='exa -l --color=always --group-directories-first'" >> .zshrc
 echo "alias la='exa -al --color=always --group-directories-first'" >> .zshrc
 echo "alias sudo='doas'" >> .zshrc
-echo "alias cat='bat'"
-echo "alias grep='grep --color=auto'"
+echo "alias cat='bat'" >> .zshrc
+echo "alias grep='grep --color=auto'" >> .zshrc
 echo "neofetch" >> .zshrc
 echo "colorscript -r" >> .zshrc
 
-while true; do
-    read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
-    case $fontinst in
-        y|Y ) echo "# Adding Nerd fonts to ${HOME}/.fonts/truetype #"; mkdir -p ${HOME}/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; unzip "${HOME}/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; fc-cache; break;;
-        n|N ) echo "Aborted, skipping..."; break;;
-    esac
-done
+read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
+case $fontinst in
+    y|Y ) echo "# Adding Nerd fonts to ${HOME}/.fonts/truetype #"; mkdir -p ${HOME}/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; unzip "${HOME}/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; fc-cache;;
+    n|N ) echo "Aborted, skipping...";;
+esac
 
-
+read -p "Do you want to install some WM's with Nix Package Manager Y/N " fontinst
+case $fontinst in
+    y|Y ) echo "Ok, Installing... "; nix-env -iA nixpkgs.hyprland nixpkgs.awesome nixpkgs.qtile nixpkgs.cwm nixpkgs.spectrwm;;
+    n|N ) echo "Aborted, skipping...";;
+esac
 
 #doas
 echo "Configuring doas"
