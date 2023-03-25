@@ -41,9 +41,16 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake gotop conky
+echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-utils Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake gotop conky rofi gcc ninja
 
-read -p "Would you like to use DT's colorscripts " colorsc
+read -p "Would you like to install picom dependecies Y/N " picom
+case $picom in
+    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install dbus-devel gcc git libconfig-devel libdrm-devel libev-devel libX11-devel libX11-xcb libXext-devel libxcb-devel libGL-devel libEGL-devel meson pcre2-devel pixman-devel uthash-devel xcb-util-image-devel xcb-util-renderutil-devel xorg-x11-proto-devel;;
+    n|N ) echo "Aborted, skipping...";;
+esac
+
+
+read -p "Would you like to use DT's colorscripts Y/N " colorsc
 case $colorsc in
     y|Y ) echo "Installing..."; echo "$pass" | sudo dnf copr enable foopsss/shell-color-scripts; echo "$pass" | sudo dnf install shell-color-scripts;;
     n|N ) echo "Aborted, skipping...";;
@@ -78,14 +85,16 @@ esac
 
 sleep 2
 
-if [ "$wayl" = 'y' ]; then
-    #hyprland dependencies and git clone
-    read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N " hyprinst
-    case $hyprinst in
-        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel; git clone --recursive https://github.com/hyprwm/Hyprland;;
-        n|N ) echo "Aborted, skipping...";;
-    esac
-fi
+
+#hyprland dependencies and git clone
+#if [ "$wayl" = 'y' ]; then
+
+#    read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N " hyprinst
+#    case $hyprinst in
+#        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel; git clone --recursive https://github.com/hyprwm/Hyprland;;
+#        n|N ) echo "Aborted, skipping...";;
+#    esac
+#fi
 
 sleep 2
 
