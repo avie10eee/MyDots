@@ -2,6 +2,7 @@
 
 
 cron=$(crontab -l)
+DIR=$(pwd)
 
 echo "##############################"
 echo "# Welcome to PigOS installer #"
@@ -41,7 +42,7 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-utils Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake gotop conky rofi gcc ninja
+echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-utils Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake gotop conky rofi gcc ninja sxhkd
 
 read -p "Would you like to install picom dependecies Y/N " picom
 case $picom in
@@ -160,14 +161,17 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 
 echo "1" | sh ${HOME}/.config/polybar/polybar-themes/setup.sh
 
+#neofetch
+mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
 
-mv ${HOME}/setup/neofetch/config.conf ${HOME}/.config/neofetch
 
+mv ${DIR}/wmdots/* ${HOME}
 
+#wm's
+mv ${HOME}/'spectrwm' 'qtile'  'awesome' 'cwm' .config
 
 
 #install zsh and ohmyzsh (PUT AT THE END)
-
 echo " " | sudo dnf install zsh
 echo "/bin/zsh" | sudo lchsh "$USER"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

@@ -52,7 +52,7 @@ esac
 
 read -p "Do you want to install some WM's with Nix Package Manager Y/N " fontinst
 case $fontinst in
-    y|Y ) echo "Ok, Installing... "; nix-env -iA nixpkgs.hyprland nixpkgs.awesome nixpkgs.qtile nixpkgs.cwm nixpkgs.spectrwm;;
+    y|Y ) echo "Ok, Installing... "; nix-env -iA nixpkgs.hyprland nixpkgs.awesome nixpkgs.qtile nixpkgs.cwm nixpkgs.spectrwm nixpkgs.picom-jonaburg;;
     n|N ) echo "Aborted, skipping...";;
 esac
 
