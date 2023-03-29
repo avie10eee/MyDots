@@ -1,1 +1,0 @@
-this is the config file for archcrafts polybar

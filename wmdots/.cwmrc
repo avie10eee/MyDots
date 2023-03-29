@@ -49,10 +49,7 @@ color selfont	"#ffffff"
 command FileManager 			thunar
 command Terminal 				urxvt
 command Browser 				firefox
-command Archlinux-Tweak-Tool 	archlinux-tweak-tool
-command Arcolinux-Welcome-App   arcolinux-welcome-app
-command Restart-Polybar			arcolinux-restart-polybar
-command Archlinux-Logout 		archlinux-logout
+
 
 ####################################################################
 # Keyboard Keybinding
@@ -68,7 +65,6 @@ unbind-key all
 
 # Close Window
 bind-key 4-q window-close
-bind-key 4S-q window-close
 
 # Hide window
 bind-key 4-BackSpace window-hide

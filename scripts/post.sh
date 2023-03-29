@@ -18,31 +18,10 @@ echo "set -g mouse on" >> ${HOME}/.tmux.conf
 
 #zshrc
 echo "Configuring zshrc"
-echo "Adding exports"
-sleep 2
-echo 'export TERM="xterm-256color"' >> .zshrc
-echo 'export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"' >> .zshrc
-echo 'export EDITOR="micro"' >> .zshrc
-sleep 2
 
-echo "Adding .config to xdg config home"
+echo "${HOME}/setup/.zshrc" >> .zshrc
 
-sleep 2
 
-echo 'if [ -z "$XDG_CONFIG_HOME" ] ; then' >> .zshrc
-echo '    export XDG_CONFIG_HOME="$HOME/.config"' >> .zshrc
-
-echo "Adding aliases"
-
-sleep 2
-
-echo "alias ls='exa -l --color=always --group-directories-first'" >> .zshrc
-echo "alias la='exa -al --color=always --group-directories-first'" >> .zshrc
-echo "alias sudo='doas'" >> .zshrc
-echo "alias cat='bat'" >> .zshrc
-echo "alias grep='grep --color=auto'" >> .zshrc
-echo "neofetch" >> .zshrc
-echo "colorscript -r" >> .zshrc
 
 read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
 case $fontinst in
