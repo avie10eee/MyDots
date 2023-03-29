@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 
 
 cron=$(crontab -l)
@@ -84,18 +84,7 @@ case $yesno in
     n|N ) echo "Aborted, skipping...";;
 esac
 
-sleep 2
 
-
-#hyprland dependencies and git clone
-#if [ "$wayl" = 'y' ]; then
-
-#    read -p "Would you like to install Hyprland dependencies and clone Hyprland Y/N " hyprinst
-#    case $hyprinst in
-#        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ninja-build cmake meson gcc-c++ libxcb-devel libX11-devel pixman-devel wayland-protocols-devel cairo-devel pango-devel; git clone --recursive https://github.com/hyprwm/Hyprland;;
-#        n|N ) echo "Aborted, skipping...";;
-#    esac
-#fi
 
 sleep 2
 
@@ -146,6 +135,7 @@ echo "# Updating Cron jobs to update on reboot #"
 sleep 2
 echo "@reboot echo $pass | sudo dnf upgrade" >> cfile
 echo "@reboot echo $pass | sudo dnf autoremove" >> cfile
+echo "@hourly ./.autobg"
 
 sleep 5
 
@@ -159,7 +149,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 
-echo "1" | sh ${HOME}/.config/polybar/polybar-themes/setup.sh
+sh ${DIR}/.config/polybar/polybar-themes/setup.sh
 
 #neofetch
 mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch

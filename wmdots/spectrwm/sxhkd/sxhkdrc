@@ -8,7 +8,7 @@
 
 # Vivaldi
 super + F1
-	vivaldi-stable
+	firefox
 
 # Atom
 super + F2
@@ -60,11 +60,11 @@ super + F12
 
 #Atom
 super + e
-    atom
+    code
 
 #Browser
 super + w
-    vivaldi-stable
+    firfox
 
 #Conky-toggle
 super + c
@@ -72,11 +72,11 @@ super + c
 
 #Htop
 super + h
-    urxvt 'htop task manager' -e htop
+    alacritty 'htop task manager' -e htop
 
 #archlinux-logout
 super + x
-    archlinux-logout
+    logout
 
 #Rofi theme selector
 super + r
@@ -84,7 +84,7 @@ super + r
 
 #Urxvt
 super + t
-    urxvt
+    alacritty
 
 #Pavucontrol
 super + v
@@ -92,7 +92,7 @@ super + v
 
 #Pragha
 super + m
-    pragha
+    
 
 #alacritty
 #super + Return
@@ -137,17 +137,10 @@ super + shift + d
 # CONTROL + ALT KEYS
 #################################################################
 
-#arcolinux-welcome-app
-ctrl + alt + w
-     arcolinux-welcome-app
-
-#archlinux-tweak-tool
-ctrl + alt + e
-    archlinux-tweak-tool
 
 #conky-rotate
 ctrl + alt + Next
-     conky-rotate -n
+    conky-rotate -n
 
 #conky-rotate
 ctrl + alt + Prior
@@ -155,11 +148,11 @@ ctrl + alt + Prior
 
 #File-Manager
 #ctrl + alt + b
-#     thunar
+    thunar
 
 #Catfish
 ctrl + alt + c
-     catfish
+    catfish
 
 #Chromium
 ctrl + alt + g
@@ -167,39 +160,30 @@ ctrl + alt + g
 
 #Firefox
 ctrl + alt + f
-     firefox
+    firefox
 
 #Nitrogen
 ctrl + alt + i
-     nitrogen
-
-#archlinux-logout
-ctrl + alt + k
-     archlinux-logout
+    nitrogen
 
 #archlinux-logout
 ctrl + alt + l
     archlinux-logout
 
-#Pamac-manager
-ctrl + alt + p
-    pamac-manager
 
 #Xfce4-settings-manager
 ctrl + alt + m
-     xfce4-settings-manager
+    xfce4-settings-manager
+
 
 #Pulse Audio Control
 ctrl + alt + u
-     pavucontrol
+    pavucontrol
 
 #Rofi theme selector
 ctrl + alt + r
-  rofi-theme-selector
+    rofi-theme-selector
 
-#Spotify
-ctrl + alt + s
-   spotify
 
 #alacritty
 #ctrl + alt + Return
@@ -208,14 +192,6 @@ ctrl + alt + s
 #alacritty
 #ctrl + alt + t
 #    alacritty
-
-#Vivaldi
-ctrl + alt + v
-    vivaldi-stable
-
-#Xfce4-appfinder
-ctrl + alt + a
-    xfce4-appfinder
 
 
 #Keyboard dependent

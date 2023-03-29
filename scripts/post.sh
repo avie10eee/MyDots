@@ -1,10 +1,12 @@
-#!/usr/bin/bash
+#!/bin/bash
+
+DIR=$(pwd)
+NERDF=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
 
 echo "################################"
 echo "# this is post PigOS installer #"
 echo "################################"
 
-rm cfile
 
 echo "# Adding micro configuration #"
 echo "{
@@ -22,10 +24,14 @@ echo "Configuring zshrc"
 echo "${HOME}/setup/.zshrc" >> .zshrc
 
 
+mkdir .wallpapers
+cp "${DIR}/wallpapers" ".wallpapers"
+mv "${DIR}/setup/autobg.sh" ${HOME}
+
 
 read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
 case $fontinst in
-    y|Y ) echo "# Adding Nerd fonts to ${HOME}/.fonts/truetype #"; mkdir -p ${HOME}/.fonts/truetype; wget -q https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip; unzip "${HOME}/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; fc-cache;;
+    y|Y ) echo "# Adding Nerd fonts to ${HOME}/.fonts/truetype #"; mkdir -p ${HOME}/.fonts/truetype; wget -q ${NERDF}; unzip "${HOME}/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; fc-cache;;
     n|N ) echo "Aborted, skipping...";;
 esac
 
