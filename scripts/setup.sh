@@ -135,7 +135,7 @@ echo "# Updating Cron jobs to update on reboot #"
 sleep 2
 echo "@reboot echo $pass | sudo dnf upgrade" >> cfile
 echo "@reboot echo $pass | sudo dnf autoremove" >> cfile
-echo "@hourly ./.autobg"
+echo "@hourly ./.autobg" >> cfile
 
 sleep 5
 
