@@ -2,7 +2,7 @@
 
 
 cron=$(crontab -l)
-DIR=$(pwd)
+DIR=$(HOME)/setup
 
 echo "##############################"
 echo "# Welcome to PigOS installer #"

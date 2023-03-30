@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$(pwd)
+DIR=($HOME/setup)
 NERDF=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
 
 echo "################################"
