@@ -57,24 +57,6 @@ case $colorsc in
     n|N ) echo "Aborted, skipping...";;
 esac
 
-if [ "$colorsc" = 'y' ]; then
-    echo "# Configuring DT's colorscripts"
-    sleep 2
-    colorscript -b xmonad
-    colorscript -b tiefighter2
-    colorscript -b tiefighter1row
-    colorscript -b tifighter1
-    colorscript -b thebat2
-    colorscript -b spectrum
-    colorscript -b pukeskull
-    colorscript -b mouseface2
-    colorscript -b guns
-    colorscript -b colorbars
-    colorscript -b bloks
-    colorscript -b blok
-fi
-
-
 sleep 2
 
 
