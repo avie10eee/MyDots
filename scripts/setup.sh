@@ -125,7 +125,6 @@ mkdir ${HOME}/.config/polybar
 
 #git cloning
 git clone https://github.com/adi1090x/polybar-themes "$HOME/.config/polybar"
-git clone https://github.com/catppuccin/alacritty.git "$HOME/.config/alacritty"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlig
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -136,6 +135,8 @@ sh ${DIR}/.config/polybar/polybar-themes/setup.sh
 #neofetch
 mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
 
+mkdir -p ${HOME}/.config/alacritty
+mv ${DIR}/alacritty.yml ${HOME}/.config/alacritty
 
 mv ${DIR}/wmdots/* ${HOME}
 
