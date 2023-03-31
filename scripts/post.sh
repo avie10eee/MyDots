@@ -29,6 +29,11 @@ cp "${DIR}/wallpapers" ".wallpapers"
 mv "${DIR}/setup/autobg.sh" ${HOME}
 
 
+mkdir -p ${HOME}/.config/micro/colorschemes
+mv ${DIR}catppuccin-mocha.micro ${HOME}/.config/micro/colorschemes
+#ADD THE COLORSCHEME CHANGE!!!!!!!!
+
+
 read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
 case $fontinst in
     y|Y ) echo "# Adding Nerd fonts to ${HOME}/.fonts/truetype #"; mkdir -p ${HOME}/.fonts/truetype; wget -q ${NERDF}; unzip "${HOME}/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; fc-cache;;
