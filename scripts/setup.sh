@@ -1,8 +1,7 @@
 #!/bin/bash
 
 
-cron=$(crontab -l)
-DIR=$(HOME)/setup
+DIR=${HOME}/setup
 
 echo "##############################"
 echo "# Welcome to PigOS installer #"
@@ -42,7 +41,7 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-utils Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake gotop conky rofi gcc ninja sxhkd xfce4-power-manager volumeicon xfce4-settings-manager xfce4-power-manager-settings pavucontrol
+echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-tools Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake conky rofi gcc ninja-build sxhkd xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager pavucontrol feh nitrogen
 
 read -p "Would you like to install picom dependecies Y/N " picom
 case $picom in
@@ -92,7 +91,7 @@ case $nixinst in
         #linking nix apps to usr/share/applications
         echo "$pass" | sudo ln -s /nix/var/nix/profiles/per-user/${HOME}/profile/share/applications /usr/share/applications;
         #adding nix stuff to cron
-        echo cron > cfile;
+        echo ${cron} > cfile;
         echo "@reboot nix-channel --update; nix-env -iA nixpkgs.nix nixpkgs.cacert" >> cfile;
         echo "@reboot nix-collect-garbage" >> cfile;;
     n|N ) echo "Aborted, skipping...";;
@@ -148,11 +147,6 @@ mv ${HOME}/'spectrwm' 'qtile'  'awesome' 'cwm' .config
 echo " " | sudo dnf install zsh
 echo "/bin/zsh" | sudo lchsh "$USER"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-sleep 5
-
-sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k/"' ${HOME}/.zshrc
-sed -i 's/plugins=(git)/plugins=(zsh-syntax-highlighting zsh-autosuggestions)/' .zshrc
 
 sleep 3
 

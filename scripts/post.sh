@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=($HOME/setup)
+DIR={$HOME}/setup
 NERDF=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
 
 echo "################################"
@@ -65,6 +65,10 @@ case $fontinst in
     y|Y ) echo "Ok, Installing... "; nix-env -iA nixpkgs.hyprland nixpkgs.awesome nixpkgs.qtile nixpkgs.cwm nixpkgs.spectrwm nixpkgs.picom-jonaburg;;
     n|N ) echo "Aborted, skipping...";;
 esac
+
+
+sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k/"' ${HOME}/.zshrc
+sed -i 's/plugins=(git)/plugins=(zsh-syntax-highlighting zsh-autosuggestions)/' .zshrc
 
 #doas
 echo "Configuring doas"
