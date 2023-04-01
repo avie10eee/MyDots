@@ -15,6 +15,9 @@ echo '{
     "colorscheme": "gruvbox"
 }' > ${HOME}/.config/micro/settings.json
 
+micro -plugin install detectindent manipulator filemanager quoter
+
+
 
 #tmux config
 echo "set -g mouse on" >> ${HOME}/.tmux.conf
