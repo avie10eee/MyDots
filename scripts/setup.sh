@@ -41,7 +41,7 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-tools Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake conky rofi gcc ninja-build sxhkd xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager pavucontrol feh nitrogen
+echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-tools bluez-libs Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake conky rofi gcc ninja-build sxhkd xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager pavucontrol feh nitrogen easyeffects
 
 read -p "Would you like to install picom dependecies Y/N " picom
 case $picom in

@@ -9,10 +9,11 @@ echo "################################"
 
 
 echo "# Adding micro configuration #"
-echo "{
-    'autosave': 1,
-    'hlsearch': true
-}" > ${HOME}/.config/micro/settings.json
+echo '{
+    "autosave": 1,
+    "hlsearch": true
+    "colorscheme": "gruvbox"
+}' > ${HOME}/.config/micro/settings.json
 
 
 #tmux config
