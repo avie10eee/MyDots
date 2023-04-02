@@ -29,8 +29,6 @@ echo "$pass" | sudo sh -c 'echo "defaultyes = True" >> /etc/dnf/dnf.conf'
 
 echo "# Upgrading your system #"
 
-echo
-
 sleep 2
 
 echo "$pass" | sudo dnf upgrade
@@ -41,18 +39,43 @@ echo "# Installing selected PKGs #"
 
 sleep 2
 
-echo "$pass" | sudo dnf install tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas bluez bluez-tools bluez-libs Thunar firefox wget geany greetd rust cargo exa acpi lxqt-archiver meson cmake conky rofi gcc ninja-build sxhkd xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager pavucontrol feh nitrogen easyeffects
+#misc
+echo "$pass" | sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gccxfce4-power-manager volumeicon xfce4-settings xfce4-power-manager nitrogen dunst
+
+#font-awesome
+echo "$pass" | sudo dnf install polybar fontawesome-fonts fontawesome5-fonts fontawesome-fonts-web 
+
+#term
+echo "$pass" | sudo dnf install alacritty
+
+#bluetooth + audio
+echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman pulseaudio pavucontrol easyeffects pulseaudio-module-bluetooth 
+
+#term tools +term editor + gui editor
+echo "$pass" | sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake ninja-build geany feh meson sxhkd 
+
+#screenshot
+echo "$pass" | sudo dnf install flameshot 
+
+#browser + file manager
+echo "$pass" | sudo dnf install firefox thunar
+
+echo "# Finished packages installation #"
+sleep 2
 
 read -p "Would you like to install picom dependecies Y/N " picom
 case $picom in
-    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install dbus-devel gcc git libconfig-devel libdrm-devel libev-devel libX11-devel libX11-xcb libXext-devel libxcb-devel libGL-devel libEGL-devel meson pcre2-devel pixman-devel uthash-devel xcb-util-image-devel xcb-util-renderutil-devel xorg-x11-proto-devel;;
+    y|Y ) echo "Installing..."; 
+    echo "$pass" | sudo dnf install dbus-devel gcc git libconfig-devel libdrm-devel libev-devel libX11-devel libX11-xcb libXext-devel libxcb-devel libGL-devel libEGL-devel meson pcre2-devel pixman-devel uthash-devel xcb-util-image-devel xcb-util-renderutil-devel xorg-x11-proto-devel;;
     n|N ) echo "Aborted, skipping...";;
 esac
 
 
 read -p "Would you like to use DT's colorscripts Y/N " colorsc
 case $colorsc in
-    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf copr enable foopsss/shell-color-scripts; echo "$pass" | sudo dnf install shell-color-scripts;;
+    y|Y ) echo "Installing..."; 
+    echo "$pass" | sudo dnf copr enable foopsss/shell-color-scripts; 
+    echo "$pass" | sudo dnf install shell-color-scripts;;
     n|N ) echo "Aborted, skipping...";;
 esac
 
@@ -61,10 +84,9 @@ sleep 2
 
 read -p "Would you like to install wayland packages (why not?) Y/N " wayl
 case $yesno in
-    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber ;;
+    y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber easyeffects;;
     n|N ) echo "Aborted, skipping...";;
 esac
-
 
 
 sleep 2
@@ -75,7 +97,6 @@ case $yesno in
     y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm;;
     n|N ) echo "Aborted, skipping...";;
 esac
-
 
 
 sleep 5
@@ -98,7 +119,9 @@ case $nixinst in
 esac
 
 sleep 5
+
 echo
+
 echo "# Enabling RPM-Fusion repositories #"
 sleep 3
 #enabling rpm-fusion
@@ -111,7 +134,7 @@ echo "$pass" | sudo dnf install intel-media-driver
 
 sleep 5
 
-#crontab stuff(not sure if it works)
+#crontab stuff
 echo "# Updating Cron jobs to update on reboot #"
 sleep 2
 echo "@reboot echo $pass | sudo dnf upgrade" >> cfile
@@ -128,8 +151,8 @@ git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlig
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-
-sh ${DIR}/.config/polybar/polybar-themes/setup.sh
+#running polybar-themes installer
+sh ${HOME}/.config/polybar/polybar-themes/setup.sh
 
 #neofetch
 mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
@@ -137,9 +160,10 @@ mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
 mkdir -p ${HOME}/.config/alacritty
 mv ${DIR}/alacritty.yml ${HOME}/.config/alacritty
 
-mv ${DIR}/wmdots/* ${HOME}
+
 
 #wm's
+mv ${DIR}/wmdots/* ${HOME}
 mv ${HOME}/'spectrwm' 'qtile'  'awesome' 'cwm' .config
 
 
@@ -149,6 +173,11 @@ echo "/bin/zsh" | sudo lchsh "$USER"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 sleep 3
+
+#systemctl stuff
+sudo systemctl enable bluetooth
+sudo systemctl enable acpid
+
 
 #adding all changes to crontab
 crontab cfile
