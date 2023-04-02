@@ -61,8 +61,10 @@ pkg_list () {
     #browser + file manager
     echo "$pass" | sudo dnf install firefox thunar
 
-    echo "# Finished packages installation #"
+    #xorg server
+    echo "$pass" | sudo dnf install xorg-x11-server-Xorg
 
+    echo "# Finished packages installation #"
 }
 
 picom_deps () {

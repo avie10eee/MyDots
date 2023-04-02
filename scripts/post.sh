@@ -2,8 +2,13 @@
 
 
 #vars
+#setting the dir
 DIR="{$HOME}/setup"
+
+#nerd font: jetbrains mono (my fav)
 NERDF=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+
+#wm's (wms_inst)
 PS3="Would you like to install any's: "
 options=("SpectrWM" "CWM" "Qtile" "Hyprland" "AwesomeWM" "Skip")
 
@@ -162,3 +167,4 @@ sleep 2
 picom
 sleep 2
 gooodbye
+sleep 6
