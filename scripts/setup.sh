@@ -41,7 +41,7 @@ pkg_list () {
     sleep 2
 
     #misc
-    echo "$pass" | sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gccxfce4-power-manager volumeicon xfce4-settings xfce4-power-manager nitrogen dunst
+    echo "$pass" | sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gcc xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager nitrogen dunst
 
     #font-awesome
     echo "$pass" | sudo dnf install polybar fontawesome-fonts fontawesome5-fonts fontawesome-fonts-web 
