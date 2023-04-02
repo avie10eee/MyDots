@@ -1,3 +1,5 @@
+## this is outdated, will update soon🙂
+
 
 root-setup.sh (Run first) will do the following:
 
