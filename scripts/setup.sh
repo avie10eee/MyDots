@@ -151,14 +151,7 @@ crontab () {
 wm_dots () {
     #adding arco wm dots to .config
     mv ${DIR}/wmdots/* ${HOME}
-    mv ${HOME}/'spectrwm' 'qtile'  'awesome' 'cwm' .config
-}
-
-zsh_inst () {
-
-    echo " " | sudo dnf install zsh
-    echo "/bin/zsh" | sudo lchsh "$USER"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    mv ${HOME}/'spectrwm' 'qtile'  'awesome' 'cwm' ${HOME}/.config
 }
 
 sysctl_stuff () {
@@ -170,6 +163,13 @@ sysctl_stuff () {
 cronmerge () {
 
     crontab cfile
+}
+
+zsh_inst () {
+
+    echo " " | sudo dnf install zsh
+    echo "/bin/zsh" | sudo lchsh "$USER"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
 cleanup () {
@@ -185,6 +185,8 @@ passinput
 sleep 2
 dnf_config
 sleep 2
+rpm_fusion
+sleep 2
 pkg_list
 sleep 2
 picom_deps
@@ -197,11 +199,7 @@ ocs-ur
 sleep 2
 nix_inst
 sleep 2
-rpm_fusion
-sleep 2
 crontab
-sleep 2
-polybar
 sleep 2
 wm_dots
 sleep 2

@@ -184,6 +184,8 @@ doas_conf
 sleep 2
 alacritty_conf
 sleep 2
+polybar
+sleep 2
 neofetch_conf
 sleep 2
 wms_inst
