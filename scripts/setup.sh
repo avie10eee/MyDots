@@ -3,7 +3,7 @@
 
 #vars
 DIR=${HOME}/setup
-
+cron=$(crontab -l)
 
 #functions
 welcome () {

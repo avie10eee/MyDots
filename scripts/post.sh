@@ -2,9 +2,9 @@
 
 
 #vars
-DIR={$HOME}/setup
+DIR="{$HOME}/setup"
 NERDF=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
-PS3='Would you like to install any's: '
+PS3="Would you like to install any's: "
 options=("SpectrWM" "CWM" "Qtile" "Hyprland" "AwesomeWM" "Skip")
 
 
@@ -117,6 +117,7 @@ wms_inst () {
                 ;;
             "AwesomeWM")
             nix-env -iA nixpkgs.awesome
+                ;;
             "Skip")
                 break
                 ;;
@@ -129,6 +130,7 @@ picom () {
     read -p "Would you like to install Picom Y/N " jona
     if [ "$jona" = 'y' ]; then
         nix-env -iA mixpkgs.picom-jonaburg
+    fi
 }
 
 gooodbye () {
