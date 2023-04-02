@@ -148,26 +148,6 @@ crontab () {
     echo "@hourly ./.autobg" >> cfile
 }
 
-polybar () {
-
-    mkdir ${HOME}/.config/polybar
-    #cloning polybar-themes by aditya shakya
-    git clone https://github.com/adi1090x/polybar-themes "$HOME/.config/polybar"
-    #running polybar-themes installer
-    sh ${HOME}/.config/polybar/polybar-themes/setup.sh
-}
-
-neofetch_conf () {
-    #moving neofetch config to .config
-    mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
-}
-
-alacritty_conf () {
-
-    mkdir -p ${HOME}/.config/alacritty
-    mv ${DIR}/alacritty.yml ${HOME}/.config/alacritty
-}
-
 wm_dots () {
     #adding arco wm dots to .config
     mv ${DIR}/wmdots/* ${HOME}
@@ -222,10 +202,6 @@ sleep 2
 crontab
 sleep 2
 polybar
-sleep 2
-neofetch_conf
-sleep 2
-alacritty_conf
 sleep 2
 wm_dots
 sleep 2

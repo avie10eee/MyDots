@@ -98,6 +98,26 @@ nerd_font () {
     esac
 }
 
+neofetch_conf () {
+    #moving neofetch config to .config
+    mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
+}
+
+alacritty_conf () {
+
+    mkdir -p ${HOME}/.config/alacritty
+    mv ${DIR}/alacritty.yml ${HOME}/.config/alacritty
+}
+
+polybar_conf () {
+
+    mkdir ${HOME}/.config/polybar
+    #cloning polybar-themes by aditya shakya
+    git clone https://github.com/adi1090x/polybar-themes "$HOME/.config/polybar"
+    #running polybar-themes installer
+    sh ${HOME}/.config/polybar/polybar-themes/setup.sh
+}
+
 doas_conf () {
     echo "Configuring doas"
     echo "add the following to /etc/doas.conf" > doas.txt
@@ -162,7 +182,13 @@ nerd_font
 sleep 2
 doas_conf
 sleep 2
+alacritty_conf
+sleep 2
+neofetch_conf
+sleep 2
 wms_inst
+sleep 2
+polybar_conf
 sleep 2
 picom
 sleep 2
