@@ -5,6 +5,7 @@
 DIR=${HOME}/setup
 cron=$(crontab -l)
 
+
 #functions
 welcome () {
 
@@ -177,38 +178,49 @@ cleanup () {
     echo "$pass" | sudo dnf autoremove
 }
 
+goodbye () {
+    echo "# Please Reboot!! #"
+    sleep 6
+}
+
+#main
+main () {
+
+    welcome
+    sleep 2
+    passinput
+    sleep 2
+    dnf_config
+    sleep 2
+    rpm_fusion
+    sleep 2
+    pkg_list
+    sleep 2
+    picom_deps
+    sleep 2
+    colorscripts_inst
+    sleep 2
+    wayland_deps
+    sleep 2
+    ocs-ur
+    sleep 2
+    nix_inst
+    sleep 2
+    crontab
+    sleep 2
+    wm_dots
+    sleep 2
+    zsh_inst
+    sleep 2
+    sysctl_stuff
+    sleep 2
+    cronmerge
+    sleep 2
+    cleanup
+    sleep 2
+    goodbye
+}
 
 #running functions
-welcome
-sleep 2
-passinput
-sleep 2
-dnf_config
-sleep 2
-rpm_fusion
-sleep 2
-pkg_list
-sleep 2
-picom_deps
-sleep 2
-colorscripts_inst
-sleep 2
-wayland_deps
-sleep 2
-ocs-ur
-sleep 2
-nix_inst
-sleep 2
-crontab
-sleep 2
-wm_dots
-sleep 2
-zsh_inst
-sleep 2
-sysctl_stuff
-sleep 2
-cronmerge
-sleep 2
-cleanup
+main
 
-echo "# Please Reboot!! #"
