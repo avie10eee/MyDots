@@ -126,25 +126,29 @@ doas_conf () {
 
 wms_inst () {
     select opt in "${options[@]}"
+    while True
     do
         case $opt in
-            "SpectrWM")
+            "SpectrWM", "spectrWM", "Spectrwm", "spectrwm")
                 nix-env -iA nixpkgs.spectrwm
                 ;;
-            "CWM")
+            "CWM", "cWM", "Cwm", "cwm")
                 nix-env -iA nixpkgs.cwm
                 ;;
-            "Qtile")
+            "Qtile", "qtile")
                 nix-env -iA nixpkgs.qtile
                 ;;
-            "Hyprland")
+            "Hyprland", "hyprland")
                 nix-env -iA nixpkgs.hyprland
                 ;;
-            "AwesomeWM")
+            "AwesomeWM", "awesomeWM", "Awesomewm")
             nix-env -iA nixpkgs.awesome
                 ;;
-            "Skip")
-                break
+            "Skip", "skip")
+            read -p "Do you want to select another Y/N " wmselect;
+            if [ "$wmselect" = "y" ]; then
+            done
+            fi
                 ;;
             *) echo "invalid option";;
         esac
@@ -154,7 +158,14 @@ wms_inst () {
 picom () {
     read -p "Would you like to install Picom Y/N " jona
     if [ "$jona" = 'y' ]; then
-        nix-env -iA mixpkgs.picom-jonaburg
+        nix-env -iA nixpkgs.picom-jonaburg
+    fi
+}
+
+btrlckscrn () {
+    read -p "Do you you have rofi themes installed Y/N " btr
+    if [ "$btr" = 'y' ]; then
+        nix-env -iA nixpkgs.betterlockscreen
     fi
 }
 
@@ -165,34 +176,42 @@ gooodbye () {
     sleep 5
 }
 
-#running functions
-welcome
-sleep 2
-micro_conf
-sleep 2
-tmux_conf
-sleep 2
-zsh_conf
-sleep 2
-wallpaper
-sleep 2
-colorscript_conf
-sleep 2
-nerd_font
-sleep 2
-doas_conf
-sleep 2
-alacritty_conf
-sleep 2
-polybar
-sleep 2
-neofetch_conf
-sleep 2
-wms_inst
-sleep 2
-polybar_conf
-sleep 2
-picom
-sleep 2
-gooodbye
-sleep 6
+#main
+main () {
+
+    welcome
+    sleep 2
+    micro_conf
+    sleep 2
+    tmux_conf
+    sleep 2
+    zsh_conf
+    sleep 2
+    wallpaper
+    sleep 2
+    colorscript_conf
+    sleep 2
+    nerd_font
+    sleep 2
+    doas_conf
+    sleep 2
+    alacritty_conf
+    sleep 2
+    polybar
+    sleep 2
+    neofetch_conf
+    sleep 2
+    wms_inst
+    sleep 2
+    polybar_conf
+    sleep 2
+    picom
+    sleep 2
+    btrlckscrn
+    sleep 2
+    gooodbye
+    sleep 6
+}
+
+# running functions
+main
