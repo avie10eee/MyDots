@@ -59,13 +59,29 @@ pkg_list () {
     #screenshot
     echo "$pass" | sudo dnf install flameshot 
 
-    #browser + file manager
-    echo "$pass" | sudo dnf install firefox thunar
+    #file manager
+    echo "$pass" | sudo dnf install thunar
 
     #xorg server
     echo "$pass" | sudo dnf install xorg-x11-server-Xorg
 
+    #browser + patchbay
+    flatpak install flathub org.pipewire.Helvum
+    flatpak install flathub org.mozilla.firefox
+
     echo "# Finished packages installation #"
+}
+
+pipewire () {
+
+    if ["$wayl" = "y"]; then
+        echo "$pass" | sudo dnf install pipewire wireplumber easyeffects pipewire-alsa pipewire-jack pipewire-pulseaudio
+    else
+    read -p "Do you want to install pipwire and related apps Y/N " pipe
+    if [ "$pipe" = "y" ]; then
+        echo "$pass" | sudo dnf install pipewire wireplumber easyeffects pipewire-alsa pipewire-jack pipewire-pulseaudio
+    fi
+    fi
 }
 
 picom_deps () {
@@ -92,8 +108,8 @@ colorscripts_inst () {
 wayland_deps () {
 
     read -p "Would you like to install wayland packages (why not?) Y/N " wayl
-    case $yesno in
-        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard pipewire grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber easyeffects;;
+    case $wayl in
+        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber;;
         n|N ) echo "Aborted, skipping...";;
     esac
 }
@@ -138,6 +154,10 @@ rpm_fusion () {
     echo "$pass" | sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
     echo "$pass" | sudo dnf groupupdate sound-and-video
     echo "$pass" | sudo dnf install intel-media-driver
+}
+
+flatpak () {
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 }
 
 crontab () {
@@ -196,11 +216,15 @@ main () {
     sleep 2
     pkg_list
     sleep 2
+    flatpak
+    sleep 2
     picom_deps
     sleep 2
     colorscripts_inst
     sleep 2
     wayland_deps
+    sleep 2
+    pipewire
     sleep 2
     ocs-ur
     sleep 2
