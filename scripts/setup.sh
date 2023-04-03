@@ -50,8 +50,8 @@ pkg_list () {
     #term
     echo "$pass" | sudo dnf install alacritty
 
-    #bluetooth + audio
-    echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman pulseaudio pavucontrol easyeffects pulseaudio-module-bluetooth alsa-utils
+    #bluetooth
+    echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman 
 
     #term tools +term editor + gui editor
     echo "$pass" | sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake ninja-build geany feh meson sxhkd 
@@ -75,7 +75,7 @@ pipewire () {
     else
     read -p "Do you want to install pipwire and related apps Y/N " pipe
     if [ "$pipe" = "y" ]; then
-        echo "$pass" | sudo dnf install pipewire wireplumber easyeffects pipewire-alsa pipewire-jack pipewire-pulseaudio
+        echo "$pass" | sudo dnf install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulseaudio pavucontrol easyeffects alsa-utils pipewire-jack-audio-connection-kit pipewire-gstreamer pipewire-libs pipewire-utils pipewire-plugin-libcamera pipewire-module-x11
     fi
     fi
 }
