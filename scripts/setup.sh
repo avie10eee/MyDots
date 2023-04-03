@@ -65,10 +65,6 @@ pkg_list () {
     #xorg server
     echo "$pass" | sudo dnf install xorg-x11-server-Xorg
 
-    #browser + patchbay
-    flatpak install flathub org.pipewire.Helvum
-    flatpak install flathub org.mozilla.firefox
-
     echo "# Finished packages installation #"
 }
 
@@ -158,6 +154,9 @@ rpm_fusion () {
 
 flatpak () {
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    #browser + patchbay
+    flatpak install flathub org.pipewire.Helvum
+    flatpak install flathub org.mozilla.firefox
 }
 
 crontab () {
