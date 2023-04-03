@@ -51,7 +51,7 @@ pkg_list () {
     echo "$pass" | sudo dnf install alacritty
 
     #bluetooth + audio
-    echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman pulseaudio pavucontrol easyeffects pulseaudio-module-bluetooth 
+    echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman pulseaudio pavucontrol easyeffects pulseaudio-module-bluetooth alsa-utils
 
     #term tools +term editor + gui editor
     echo "$pass" | sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake ninja-build geany feh meson sxhkd 
