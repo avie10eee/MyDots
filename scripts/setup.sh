@@ -70,12 +70,12 @@ pkg_list () {
 
 pipewire () {
 
-    if ["$wayl" = "y"]; then
-        echo "$pass" | sudo dnf install pipewire wireplumber easyeffects pipewire-alsa pipewire-jack pipewire-pulseaudio
+    if ["$wayl" = "y"]; 
+    then echo "$pass" | sudo dnf install pipewire wireplumber easyeffects pipewire-alsa pipewire-jack pipewire-pulseaudio
     else
     read -p "Do you want to install pipwire and related apps Y/N " pipe
-    if [ "$pipe" = "y" ]; then
-        echo "$pass" | sudo dnf install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulseaudio pavucontrol easyeffects alsa-utils pipewire-jack-audio-connection-kit pipewire-gstreamer pipewire-libs pipewire-utils pipewire-plugin-libcamera pipewire-module-x11
+    if [ "$pipe" = "y" ]; 
+    then echo "$pass" | sudo dnf install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulseaudio pavucontrol easyeffects alsa-utils pipewire-jack-audio-connection-kit pipewire-gstreamer pipewire-libs pipewire-utils pipewire-plugin-libcamera pipewire-module-x11
     fi
     fi
 }
