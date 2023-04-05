@@ -169,6 +169,12 @@ btrlckscrn () {
     fi
 }
 
+nixunstable () {
+
+    nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+    nix-channel --update
+}
+
 gooodbye () {
     echo "Thank you for using the PigOS script"
     sleep 2
@@ -180,6 +186,8 @@ gooodbye () {
 main () {
 
     welcome
+    sleep 2
+    nixunstable
     sleep 2
     micro_conf
     sleep 2
