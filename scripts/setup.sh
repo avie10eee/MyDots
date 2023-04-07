@@ -165,7 +165,6 @@ crontab () {
     sleep 2
     echo "@reboot echo $pass | sudo dnf upgrade" >> cfile
     echo "@reboot echo $pass | sudo dnf autoremove" >> cfile
-    echo "@hourly ./.autobg" >> cfile
 }
 
 wm_dots () {

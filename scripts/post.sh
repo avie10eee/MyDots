@@ -14,12 +14,14 @@ options=("SpectrWM" "CWM" "Qtile" "Hyprland" "AwesomeWM" "Skip")
 
 
 #functions
+#welcomes the user
 welcome () {
     echo "################################"
     echo "# this is post PigOS installer #"
     echo "################################"
 }
 
+#configures micro text editor
 micro_conf () {
 
     echo "# Adding micro configuration #"
@@ -37,11 +39,13 @@ micro_conf () {
     micro -plugin install detectindent manipulator filemanager quoter
 }
 
+#configures tmux multiplexer
 tmux_conf () {
     #turning on mouse in tmux
     echo "set -g mouse on" >> ${HOME}/.tmux.conf
 }
 
+#configures zshell
 zsh_conf () {
 
     echo "Configuring zshrc"
@@ -58,6 +62,7 @@ zsh_conf () {
 
 }
 
+#adds a script script that changes the wallpaper
 wallpaper () {
 
     mkdir .wallpapers
@@ -65,6 +70,13 @@ wallpaper () {
     mv "${DIR}/setup/autobg.sh" ${HOME}
 }
 
+#configures dunst
+dunst_conf () {
+    mkdir -p ${HOME}/.config/dunst
+    mv ${DIR}/dunstrc ${HOME}/.config/dunst
+}
+
+#configures DT'S colorscipts to my liking (feel free to change)
 colorscript_conf () {
 
     read -p "Have you installed DT's colorscripts Y/N " colorsc
@@ -86,6 +98,7 @@ colorscript_conf () {
     fi
 }
 
+#installs jetbrains mono nerd font
 nerd_font () {
     read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
     case $fontinst in
@@ -98,17 +111,20 @@ nerd_font () {
     esac
 }
 
+#configures neofetch
 neofetch_conf () {
     #moving neofetch config to .config
     mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
 }
 
+#configures alacritty
 alacritty_conf () {
 
     mkdir -p ${HOME}/.config/alacritty
     mv ${DIR}/alacritty.yml ${HOME}/.config/alacritty
 }
 
+#configures polybar-themes by aditya shakya
 polybar_conf () {
 
     mkdir ${HOME}/.config/polybar
@@ -118,12 +134,14 @@ polybar_conf () {
     sh ${HOME}/.config/polybar/polybar-themes/setup.sh
 }
 
+#configures the sudo alternative "doas"
 doas_conf () {
     echo "Configuring doas"
     echo "add the following to /etc/doas.conf" > doas.txt
     echo "permit persist keepenv ${USER} as root" >> doas.txt
 }
 
+#adds arco-linux window manager configurations
 wms_inst () {
     select opt in "${options[@]}"
     while True
@@ -155,6 +173,7 @@ wms_inst () {
     done
 }
 
+#install a picom fork with blur and rounded corners
 picom () {
     read -p "Would you like to install Picom Y/N " jona
     if [ "$jona" = 'y' ]; then
@@ -162,6 +181,7 @@ picom () {
     fi
 }
 
+#installs betterlockcreen
 btrlckscrn () {
     read -p "Do you you have rofi themes installed Y/N " btr
     if [ "$btr" = 'y' ]; then
@@ -169,16 +189,20 @@ btrlckscrn () {
     fi
 }
 
+#adds nix-channel-unstable for newer packages
 nixunstable () {
 
     nix-channel --add https://nixos.org/channels/nixpkgs-unstable
     nix-channel --update
 }
 
+#says goodbye to the user
 gooodbye () {
-    echo "Thank you for using the PigOS script"
-    sleep 2
-    echo "I would recommend rebooting"
+    cat <<EOF
+    Thank you for using the PigOS script
+    I would recommend rebooting
+    Goodbye ${USER}
+    EOF
     sleep 5
 }
 
@@ -202,6 +226,8 @@ main () {
     nerd_font
     sleep 2
     doas_conf
+    sleep 2
+    dunst_conf
     sleep 2
     alacritty_conf
     sleep 2

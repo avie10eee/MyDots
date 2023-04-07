@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#this script will change your wallpaper to a random nord one
+#this script will change your wallpaper to a random one in ~/.wallpapers
 wallpaperdir='$HOME/.wallpapers'
 
 files=($wallpaperdir/*)
