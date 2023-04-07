@@ -198,7 +198,7 @@ nixunstable () {
 
 #says goodbye to the user
 gooodbye () {
-    cat <<EOF
+    cat << EOF
     Thank you for using the PigOS script
     I would recommend rebooting
     Goodbye ${USER}
