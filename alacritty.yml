@@ -1,3 +1,24 @@
+########################################
+#                                      #
+#        alacritty config              #
+#                                      #
+########################################
+
+  #Background opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  opacity: 0.9
+
+
+  # Allow terminal applications to change Alacritty's window title.
+  dynamic_title: true
+
+  #scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 1000
+
 
 font:
   normal:
@@ -84,10 +105,12 @@ font:
 draw_bold_text_with_bright_colors: true
 
 
-
+#############################
+#  C O L O R S C H E M E S  #
+#############################
 schemes:
-  #sandy wasteland colorscheme
-  sandy-wasteland: &sandy-wasteland
+  #wasteland colorscheme
+  wasteland: &wasteland
     primary:
       background: '0x3e332f'
       foreground: '0xaf4925'
@@ -111,6 +134,7 @@ schemes:
       magenta: '0x9f2367'
       cyan:    '0x22dede'
       white:   '0xdeaf7f'
+
 
 #quartz colorscheme
   quartz: &quartz
@@ -170,6 +194,7 @@ schemes:
         cyan:    '0x00e5ff'
         white:   '0x2586e5'
 
+
   party: &party
     primary:
       background: '0x191a2e'
@@ -197,6 +222,165 @@ schemes:
       magenta: '0x96b436'
       cyan:    '0xe463a6'
       white:   '0x00c8a2'
+  
+   ### Gruvbox dark ###
+  gruvbox: &gruvbox
+    # Default colors
+    primary:
+      # hard contrast: background = '0x1d2021'
+      background: '#282828'
+      # soft contrast: background = '0x32302f'
+      foreground: '#ebdbb2'
+
+    # Normal colors
+    normal:
+      black:   '#282828'
+      red:     '#cc241d'
+      green:   '#98971a'
+      yellow:  '#d79921'
+      blue:    '#458588'
+      magenta: '#b16286'
+      cyan:    '#689d6a'
+      white:   '#a89984'
+
+    # Bright colors
+    bright:
+      black:   '#928374'
+      red:     '#fb4934'
+      green:   '#b8bb26'
+      yellow:  '#fabd2f'
+      blue:    '#83a598'
+      magenta: '#d3869b'
+      cyan:    '#8ec07c'
+      white:   '#ebdbb2'
+
+### Monokai ###
+  monokai: &monokai
+    # Default colors
+    primary:
+      background: '#2D2A2E'
+      foreground: '#FCFCFA'
+
+    # Normal colors
+    normal:
+      black:   '#403E41'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
+
+    # Bright colors
+    bright:
+      black:   '#727072'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
+
+  ### Nord ###
+  Nord: &Nord
+    # Default colors
+    primary:
+      background: '#2E3440'
+      foreground: '#D8DEE9'
+
+    # Normal colors
+    normal:
+      black:   '#3B4252'
+      red:     '#BF616A'
+      green:   '#A3BE8C'
+      yellow:  '#EBCB8B'
+      blue:    '#81A1C1'
+      magenta: '#B48EAD'
+      cyan:    '#88C0D0'
+      white:   '#E5E9F0'
+
+    # Bright colors
+    bright:
+      black:   '#4C566A'
+      red:     '#BF616A'
+      green:   '#A3BE8C'
+      yellow:  '#EBCB8B'
+      blue:    '#81A1C1'
+      magenta: '#B48EAD'
+      cyan:    '#8FBCBB'
+      white:   '#ECEFF4'
+
+  Dracula: &dracula
+    primary:
+      background: '#282a36'
+      foreground: '#f8f8f2'
+    cursor:
+      text: CellBackground
+      cursor: CellForeground
+    vi_mode_cursor:
+      text: CellBackground
+      cursor: CellForeground
+    search:
+      matches:
+        foreground: '#44475a'
+        background: '#50fa7b'
+      focused_match:
+        foreground: '#44475a'
+        background: '#ffb86c'
+    line_indicator:
+      foreground: None
+      background: None
+    selection:
+      text: CellForeground
+      background: '#44475a'
+    normal:
+      black:   '#000000'
+      red:     '#ff5555'
+      green:   '#50fa7b'
+      yellow:  '#f1fa8c'
+      blue:    '#bd93f9'
+      magenta: '#ff79c6'
+      cyan:    '#8be9fd'
+      white:   '#bfbfbf'
+    bright:
+      black:   '#4d4d4d'
+      red:     '#ff6e67'
+      green:   '#5af78e'
+      yellow:  '#f4f99d'
+      blue:    '#caa9fa'
+      magenta: '#ff92d0'
+      cyan:    '#9aedfe'
+      white:   '#e6e6e6'
+    dim:
+      black:   '#14151b'
+      red:     '#ff2222'
+      green:   '#1ef956'
+      yellow:  '#ebf85b'
+      blue:    '#4d5b86'
+      magenta: '#ff46b0'
+      cyan:    '#59dffc'
+      white:   '#e6e6d1'
+
+
+
+######################################################################
+## SET THEME: Choose ONE color scheme from those in the above list. ##
+## ###################################################################
+# Available themes are:
+# *wasteland
+# *quartz
+# *ocean
+# *party
+# *gruvbox
+# *monokai
+# *Nord
+# *dracula
+
+colors: *wasteland
+
+
 
 
 visual_bell:
@@ -204,11 +388,39 @@ visual_bell:
   duration: 0
   color: '#ffffff'
 
-#When set to `true`, selected text will be copied to the primary clipboard.
-save_to_clipboard: true
-
-# Live config reload (changes require restart)
-live_config_reload: true
 
 
+cursor:
+  # Cursor style
+  style:
+    # Cursor shape
+    #
+    # Values for `shape`:
+    #   - ▇ Block
+    #   - _ Underline
+    #   - | Beam
+    shape: Beam
+
+
+
+key_bindings:
+    # (Windows, Linux, and BSD only)
+  - { key: V,         mods: Control|Shift, action: Paste                       }
+  - { key: C,         mods: Control|Shift, action: Copy                        }
+  - { key: F,         mods: Control,          action: ToggleFullscreen         }
+  - { key: Insert,    mods: Shift,         action: PasteSelection              }
+  - { key: Key0,      mods: Control,       action: ResetFontSize               }
+  - { key: Plus,      mods: Control,       action: IncreaseFontSize            }
+  - { key: Minus,     mods: Control,       action: DecreaseFontSize            }
+  - { key: Paste,     mods: None,          action: Paste                       }
+  - { key: Copy,      mods: None,          action: Copy                        }
+  - { key: L,         mods: Control,       action: ClearLogNotice              }
+  - { key: L,         mods: Control,       chars: "\x0c"                       }
+
+  # Search Mode
+  - { key: Return,                mode: Search,     action: SearchConfirm         }
+  - { key: Escape,                mode: Search,     action: SearchCancel          }
+  - { key: U,      mods: Control, mode: Search,     action: SearchClear           }
+  - { key: Return,                mode: Search,     action: SearchFocusNext       }
+  - { key: Return, mods: Shift,   mode: Search,     action: SearchFocusPrevious   }
 

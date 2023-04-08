@@ -141,7 +141,7 @@ doas_conf () {
     echo "permit persist keepenv ${USER} as root" >> doas.txt
 }
 
-#adds arco-linux window manager configurations
+#installs window managers
 wms_inst () {
     select opt in "${options[@]}"
     while True
