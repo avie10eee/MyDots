@@ -134,6 +134,10 @@ polybar_conf () {
     sh ${HOME}/.config/polybar/polybar-themes/setup.sh
 }
 
+wallswitch () {
+    mv ${DIR}/tswitch.sh 
+}
+
 #configures the sudo alternative "doas"
 doas_conf () {
     echo "Configuring doas"
