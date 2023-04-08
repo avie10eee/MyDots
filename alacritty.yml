@@ -85,84 +85,118 @@ draw_bold_text_with_bright_colors: true
 
 
 
-colors:
+schemes:
+  #sandy wasteland colorscheme
+  sandy-wasteland: &sandy-wasteland
     primary:
-        background: "#1E1E2E" # base
-        foreground: "#CDD6F4" # text
-        # Bright and dim foreground colors
-        dim_foreground: "#CDD6F4" # text
-        bright_foreground: "#CDD6F4" # text
+      background: '0x3e332f'
+      foreground: '0xaf4925'
+    # Normal colors
+    normal:
+      black:   '0x170f0b'
+      red:     '0xa9340e'
+      green:   '0x196652'
+      yellow:  '0xea7002'
+      blue:    '0x2465b8'
+      magenta: '0x74224f'
+      cyan:    '0x00c7ff'
+      white:   '0xb27d6e'
+    # Bright colors
+    bright:
+      black:   '0x54301e'
+      red:     '0xec9361'
+      green:   '0x3fd0d0'
+      yellow:  '0xdd9655'
+      blue:    '0x009bff'
+      magenta: '0x9f2367'
+      cyan:    '0x22dede'
+      white:   '0xdeaf7f'
 
-    # Cursor colors
-    cursor:
-        text: "#1E1E2E" # base
-        cursor: "#F5E0DC" # rosewater
-    vi_mode_cursor:
-        text: "#1E1E2E" # base
-        cursor: "#B4BEFE" # lavender
-
-    # Search colors
-    search:
-        matches:
-            foreground: "#1E1E2E" # base
-            background: "#A6ADC8" # subtext0
-        focused_match:
-            foreground: "#1E1E2E" # base
-            background: "#A6E3A1" # green
-        footer_bar:
-            foreground: "#1E1E2E" # base
-            background: "#A6ADC8" # subtext0
-
-    # Keyboard regex hints
-    hints:
-        start:
-            foreground: "#1E1E2E" # base
-            background: "#F9E2AF" # yellow
-        end:
-            foreground: "#1E1E2E" # base
-            background: "#A6ADC8" # subtext0
-
-    # Selection colors
-    selection:
-        text: "#1E1E2E" # base
-        background: "#F5E0DC" # rosewater
+#quartz colorscheme
+  quartz: &quartz
+    # Default colors
+    primary:
+      background: '0x150e1a'
+      foreground: '0xcec2d7'
 
     # Normal colors
     normal:
-        black: "#45475A" # surface1
-        red: "#F38BA8" # red
-        green: "#A6E3A1" # green
-        yellow: "#F9E2AF" # yellow
-        blue: "#89B4FA" # blue
-        magenta: "#F5C2E7" # pink
-        cyan: "#94E2D5" # teal
-        white: "#BAC2DE" # subtext1
+      black:   '0x211827'
+      red:     '0x2b2032'
+      green:   '0x3e3048'
+      yellow:  '0xdf1ed4'
+      blue:    '0x79608b'
+      magenta: '0x9b83ad'
+      cyan:    '0xbeafca'
+      white:   '0x9c96a0'
 
     # Bright colors
     bright:
-        black: "#585B70" # surface2
-        red: "#F38BA8" # red
-        green: "#A6E3A1" # green
-        yellow: "#F9E2AF" # yellow
-        blue: "#89B4FA" # blue
-        magenta: "#F5C2E7" # pink
-        cyan: "#94E2D5" # teal
-        white: "#A6ADC8" # subtext0
+      black:   '0x768e59'
+      red:     '0xc57693'
+      green:   '0xb586d5'
+      yellow:  '0x83a25d'
+      blue:    '0x9b75b4'
+      magenta: '0xe06396'
+      cyan:    '0xba8bd9'
+      white:   '0xdf81a4'
 
-    # Dim colors
-    dim:
-        black: "#45475A" # surface1
-        red: "#F38BA8" # red
-        green: "#A6E3A1" # green
-        yellow: "#F9E2AF" # yellow
-        blue: "#89B4FA" # blue
-        magenta: "#F5C2E7" # pink
-        cyan: "#94E2D5" # teal
-        white: "#BAC2DE" # subtext1
 
-    indexed_colors:
-        - { index: 16, color: "#FAB387" }
-        - { index: 17, color: "#F5E0DC" }
+#ocean colorscheme
+  ocean: &ocean
+    primary:
+      background: '0x172628'
+      foreground: '0x6d9bc5'
+
+      # Normal colors
+      normal:
+        black:   '0x0f0e12'
+        red:     '0x1a181e'
+        green:   '0x2c2931'
+        yellow:  '0x00dfdf'
+        blue:    '0x645f6f'
+        magenta: '0x898493'
+        cyan:    '0xb3b0b9'
+        white:   '0x13c0d5'
+
+      # Bright colors
+      bright:
+        black:   '0x7cb7a1'
+        red:     '0x2074c7'
+        green:   '0xe0af48'
+        yellow:  '0x3973ab'
+        blue:    '0x6dd3b1'
+        magenta: '0xe3b8cc'
+        cyan:    '0x00e5ff'
+        white:   '0x2586e5'
+
+  party: &party
+    primary:
+      background: '0x191a2e'
+      foreground: '0xc4c8be'
+
+    # Normal colors
+    normal:
+      black:   '0x1b1c1a'
+      red:     '0x242422'
+      green:   '0x353632'
+      yellow:  '0x4b4d49'
+      blue:    '0x686a64'
+      magenta: '0x8b8d86'
+      cyan:    '0xb3b6ad'
+      white:   '0x98c649'
+
+
+    # Bright colors
+    bright:
+      black:   '0xeb7cb3'
+      red:     '0x58b1cd'
+      green:   '0xeda3c5'
+      yellow:  '0xc6a9f1'
+      blue:    '0xf971b7'
+      magenta: '0x96b436'
+      cyan:    '0xe463a6'
+      white:   '0x00c8a2'
 
 
 visual_bell:
