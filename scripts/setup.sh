@@ -150,7 +150,7 @@ rpm_fusion () {
 
 #does not work
 flatpak () {
-    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    command flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     #browser + patchbay
     flatpak install flathub org.pipewire.Helvum
     flatpak install flathub org.mozilla.firefox
