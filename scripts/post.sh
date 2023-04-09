@@ -31,8 +31,8 @@ micro_conf () {
 
     echo '{
         "autosave": 1,
-        "hlsearch": true
-        "colorscheme": "gruvbox"
+        "hlsearch": true,
+        "colorscheme": "gruvbox",
     }' > ${HOME}/.config/micro/settings.json
 
     #plugins
@@ -57,7 +57,7 @@ zsh_conf () {
     echo "${HOME}/setup/.zshrc" >> .zshrc
 
     #adding zsh plugins
-    sed -i 's/ZSH_THEME=""/ZSH_THEME="powerlevel10k/powerlevel10k/"' ${HOME}/.zshrc
+    sed -i 's|ZSH_THEME=""|ZSH_THEME="powerlevel10k/powerlevel10k"|' ${HOME}/.zshrc
     sed -i 's/plugins=(git)/plugins=(zsh-syntax-highlighting zsh-autosuggestions)/' .zshrc
 
 }
@@ -67,7 +67,7 @@ wallpaper () {
 
     mkdir .wallpapers
     cp "${DIR}/wallpapers" ".wallpapers"
-    mv "${DIR}/setup/autobg.sh" ${HOME}
+    mv "${DIR}/setup/.autobg.sh" ${HOME}
 }
 
 #configures dunst
@@ -135,7 +135,7 @@ polybar_conf () {
 }
 
 wallswitch () {
-    mv ${DIR}/tswitch.sh 
+    mv ${DIR}/.tswitch.sh 
 }
 
 #configures the sudo alternative "doas"
@@ -147,33 +147,39 @@ doas_conf () {
 
 #installs window managers
 wms_inst () {
-    select opt in "${options[@]}"
-    while True
-    do
-        case $opt in
-            "SpectrWM", "spectrWM", "Spectrwm", "spectrwm")
-                nix-env -iA nixpkgs.spectrwm
-                ;;
-            "CWM", "cWM", "Cwm", "cwm")
-                nix-env -iA nixpkgs.cwm
-                ;;
-            "Qtile", "qtile")
-                nix-env -iA nixpkgs.qtile
-                ;;
-            "Hyprland", "hyprland")
-                nix-env -iA nixpkgs.hyprland
-                ;;
-            "AwesomeWM", "awesomeWM", "Awesomewm")
+    select opt in "${options[@]}"; do
+    while true; do
+    case $opt in
+        SpectrWM|spectrWM|Spectrwm|spectrwm)
+            nix-env -iA nixpkgs.spectrwm
+            ;;
+
+        CWM|cWM|Cwm|cwm)
+            nix-env -iA nixpkgs.cwm
+            ;;
+
+        Qtile|qtile)
+            nix-env -iA nixpkgs.qtile
+            ;;
+
+        Hyprland|hyprland)
+            nix-env -iA nixpkgs.hyprland
+            ;;
+
+        AwesomeWM|awesomeWM|Awesomewm)
             nix-env -iA nixpkgs.awesome
-                ;;
-            "Skip", "skip")
+            ;;
+
+        Skip|skip)
             read -p "Do you want to select another Y/N " wmselect;
             if [ "$wmselect" = "y" ]; then
-            done
+                break
             fi
-                ;;
+            ;;
+
             *) echo "invalid option";;
-        esac
+    esac
+    done
     done
 }
 
@@ -185,7 +191,7 @@ picom () {
     fi
 }
 
-#installs betterlockcreen
+#installs betterlockcreen (dependant on rofi themes)
 btrlckscrn () {
     read -p "Do you you have rofi themes installed Y/N " btr
     if [ "$btr" = 'y' ]; then
@@ -234,8 +240,6 @@ main () {
     dunst_conf
     sleep 2
     alacritty_conf
-    sleep 2
-    polybar
     sleep 2
     neofetch_conf
     sleep 2
