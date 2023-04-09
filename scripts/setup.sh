@@ -148,6 +148,7 @@ rpm_fusion () {
     echo "$pass" | sudo dnf install intel-media-driver
 }
 
+#does not work
 flatpak () {
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     #browser + patchbay
@@ -232,11 +233,12 @@ main () {
     sleep 2
     cronmerge
     sleep 2
-    zsh_inst
     sleep 2
     cleanup
     sleep 2
     goodbye
+    zsh_inst
+    
 }
 
 #running functions

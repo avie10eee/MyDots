@@ -208,11 +208,10 @@ nixunstable () {
 
 #says goodbye to the user
 gooodbye () {
-    cat << EOF
+    echo "
     Thank you for using the PigOS script
     I would recommend rebooting
-    Goodbye ${USER}
-    EOF
+    Goodbye ${USER}"
     sleep 5
 }
 
