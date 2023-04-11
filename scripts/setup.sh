@@ -211,7 +211,7 @@ main () {
     sleep 2
     pkg_list
     sleep 2
-    flatpak
+    #flatpak | DOES NOT WORK, LINES 152-156
     sleep 2
     picom_deps
     sleep 2
