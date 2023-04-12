@@ -44,14 +44,14 @@ pkg_list () {
     #misc
     echo "$pass" | sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gcc xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager nitrogen dunst pixman
 
-    #font-awesome
+    #font
     echo "$pass" | sudo dnf install polybar fontawesome-fonts fontawesome5-fonts fontawesome-fonts-web 
 
     #term
     echo "$pass" | sudo dnf install alacritty
 
-    #bluetooth
-    echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman 
+    #bluetooth                                                           +network manager
+    echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman NetworkManager
 
     #term tools +term editor + gui editor
     echo "$pass" | sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake ninja-build geany feh meson sxhkd 
