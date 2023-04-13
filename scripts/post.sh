@@ -12,6 +12,9 @@ NERDF=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrains
 PS3="Would you like to install any's: "
 options=("SpectrWM" "CWM" "Qtile" "Hyprland" "AwesomeWM" "Skip")
 
+#Notes
+#the EOF statement in .desktopstf function is weird in VsCode because of the indenting
+
 
 #functions
 #welcomes the user
@@ -204,6 +207,27 @@ nixunstable () {
 
     nix-channel --add https://nixos.org/channels/nixpkgs-unstable
     nix-channel --update
+}
+
+#adds desktop entries for WM's
+.desktopstf () {
+    cat <<EOF > qtile.desktop /usr/share/xsessions
+    [Desktop Entry]
+    Name=Qtile
+    Comment=Qtile Window Manager
+    Exec=qtile start
+    Type=Application
+    Keywords=wm;tiling
+    EOF
+
+    cat <<EOF > qtile.desktop >/usr/share/wayland-sessions/
+    [Desktop Entry]
+    Name=Hyprland
+    Comment=Hyprland Window Manager
+    Exec=exec Hyprland
+    Type=Application
+    Keywords=wm;tiling;wayland
+    EOF
 }
 
 #says goodbye to the user
