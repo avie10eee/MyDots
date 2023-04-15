@@ -210,29 +210,27 @@ nixunstable () {
 }
 
 #UNFINISHED
-picomconf () {
-
-}
+#picomconf () { }
 
 #adds desktop entries for WM's
-.desktopstf () {
-    cat <<EOF > qtile.desktop /usr/share/xsessions
-    [Desktop Entry]
-    Name=Qtile
-    Comment=Qtile Window Manager
-    Exec=qtile start
-    Type=Application
-    Keywords=wm;tiling
-    EOF
+dotdesktop () {
+cat << EOF > /usr/share/xsessions/qtile.desktop 
+[Desktop Entry]
+Name=Qtile
+Comment=Qtile Window Manager
+Exec=qtile start
+Type=Application
+Keywords=wm;tiling
+EOF
 
-    cat <<EOF > qtile.desktop >/usr/share/wayland-sessions/
-    [Desktop Entry]
-    Name=Hyprland
-    Comment=Hyprland Window Manager
-    Exec=exec Hyprland
-    Type=Application
-    Keywords=wm;tiling;wayland
-    EOF
+cat << PIG > /usr/share/wayland-sessions/hypr.desktop
+[Desktop Entry]
+Name=Hyprland
+Comment=Hyprland Window Manager
+Exec=exec Hyprland
+Type=Application
+Keywords=wm;tiling;wayland
+PIG
 }
 
 #says goodbye to the user
@@ -278,6 +276,8 @@ main () {
     picom
     sleep 2
     btrlckscrn
+    sleep 2
+    dotdesktop
     sleep 2
     gooodbye
     sleep 6
