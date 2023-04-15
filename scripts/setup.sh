@@ -42,28 +42,34 @@ pkg_list () {
     sleep 2
 
     #misc
-    echo "$pass" | sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gcc xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager nitrogen dunst pixman
+    echo "$pass" | sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gcc xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager nitrogen dunst pixman polkit-gnome
 
-    #font
+    #font + polybar
     echo "$pass" | sudo dnf install polybar fontawesome-fonts fontawesome5-fonts fontawesome-fonts-web 
 
     #term
     echo "$pass" | sudo dnf install alacritty
 
-    #bluetooth                                                           +network manager
+    #bluetooth + network manager
     echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman NetworkManager
 
     #term tools +term editor + gui editor
-    echo "$pass" | sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake ninja-build geany feh meson sxhkd 
+    echo "$pass" | sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake ninja-build geany feh meson sxhkd  
 
-    #screenshot
+    #x11 screenshot
     echo "$pass" | sudo dnf install flameshot 
 
     #file manager
     echo "$pass" | sudo dnf install thunar
 
     #xorg server
-    echo "$pass" | sudo dnf install xorg-x11-server-Xorg 
+    echo "$pass" | sudo dnf install xorg-x11-server-Xorg xorg-x11-server-common
+
+    #python + pip3
+    echo "$pass" | sudo dnf install python3-pip python-pip-wheel
+
+    #python depencies
+    echo $pass | sudo dnf install python3-cffi python3-cairocffi python3-xcffib python3-dbus-next
 
     echo "# Finished packages installation #"
 }
@@ -101,7 +107,7 @@ wayland_deps () {
 
     read -p "Would you like to install wayland packages (why not?) Y/N " wayl
     case $wayl in
-        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard grim swaybg swayidle swaylock wlroots waybar wofi foot mako slurp wf-recorder light yad viewnior imagemagick xfce-polkit xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber;;
+        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard grim swaybg swayidle swaylock wlroots waybar wofi slurp wf-recorder light yad viewnior imagemagick xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber;;
         n|N ) echo "Aborted, skipping...";;
     esac
 }
@@ -151,9 +157,10 @@ rpm_fusion () {
 #does not work
 flatpak () {
     command flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    #browser + patchbay
+    #browser + patchbay + font manager
     flatpak install flathub org.pipewire.Helvum
     flatpak install flathub org.mozilla.firefox
+    flatpak install flathub org.gnome.FontManager
 }
 
 crontab () {

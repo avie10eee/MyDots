@@ -209,6 +209,11 @@ nixunstable () {
     nix-channel --update
 }
 
+#UNFINISHED
+picomconf () {
+
+}
+
 #adds desktop entries for WM's
 .desktopstf () {
     cat <<EOF > qtile.desktop /usr/share/xsessions
