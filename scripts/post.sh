@@ -213,8 +213,7 @@ nixunstable () {
 #picomconf () { }
 
 #adds desktop entries for WM's
-dotdesktop () {
-cat << EOF > /usr/share/xsessions/qtile.desktop 
+qtile_desktop () { cat ; } << EOF > /usr/share/xsessions/qtile.desktop
 [Desktop Entry]
 Name=Qtile
 Comment=Qtile Window Manager
@@ -223,14 +222,18 @@ Type=Application
 Keywords=wm;tiling
 EOF
 
-cat << PIG > /usr/share/wayland-sessions/hypr.desktop
+hypr_desktop () { cat ; } << EOF > /usr/share/wayland-sessions/hypr.desktop
 [Desktop Entry]
 Name=Hyprland
 Comment=Hyprland Window Manager
 Exec=exec Hyprland
 Type=Application
 Keywords=wm;tiling;wayland
-PIG
+EOF
+
+dotdesktop () {
+    qtile_desktop > /usr/share/xsessions/qtile.desktop
+    hypr_desktop > /usr/share/wayland-sessions/hypr.desktop
 }
 
 #says goodbye to the user
