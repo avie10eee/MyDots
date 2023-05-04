@@ -4,6 +4,6 @@
 wallpaperdir='$HOME/.wallpapers'
 
 files=($wallpaperdir/*)
-randompic=`printf "%s\n" "${files[RANDOM % ${#files[@]}]}"`
+randompic=$(printf "%s\n" "${files[RANDOM % ${#files[@]}]}")
 
 feh --bg-scale "$randompic"
