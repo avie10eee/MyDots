@@ -71,6 +71,8 @@ pkg_list () {
     #python depencies
     echo $pass | sudo dnf install python3-cffi python3-cairocffi python3-xcffib python3-dbus-next
 
+    echo $pass | sudo dnf install git-all
+
     echo "# Finished packages installation #"
 }
 
