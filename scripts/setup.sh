@@ -173,12 +173,6 @@ crontab () {
     echo "@reboot echo $pass | sudo dnf autoremove" >> cfile
 }
 
-wm_dots () {
-    #adding arco wm dots to .config
-    mv ${DIR}/wmdots/* ${HOME}
-    mv ${HOME}/'spectrwm' 'qtile'  'awesome' 'cwm' ${HOME}/.config
-}
-
 sysctl_stuff () {
 
     sudo systemctl enable bluetooth
@@ -222,8 +216,6 @@ main () {
     sleep 2
     #flatpak | DOES NOT WORK, LINES 152-156
     sleep 2
-    picom_deps
-    sleep 2
     colorscripts_inst
     sleep 2
     wayland_deps
@@ -236,12 +228,9 @@ main () {
     sleep 2
     crontab
     sleep 2
-    wm_dots
-    sleep 2
     sysctl_stuff
     sleep 2
     cronmerge
-    sleep 2
     sleep 2
     cleanup
     sleep 2
