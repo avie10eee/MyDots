@@ -48,7 +48,7 @@ pkg_list () {
     echo "$pass" | sudo dnf install polybar fontawesome-fonts fontawesome5-fonts fontawesome-fonts-web 
 
     #term
-    echo "$pass" | sudo dnf install alacritty
+    echo "$pass" | sudo dnf install alacritty kitty
 
     #bluetooth + network manager
     echo "$pass" | sudo dnf install bluez bluez-tools bluez-libs blueman NetworkManager
@@ -76,13 +76,13 @@ pkg_list () {
     echo "# Finished packages installation #"
 }
 
-pipewire () {
-
-    read -p "Do you want to install pipwire and related apps Y/N " pipe
-    if [ "$pipe" = "y" ]; 
-    then echo "$pass" | sudo dnf install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulseaudio pavucontrol easyeffects alsa-utils pipewire-jack-audio-connection-kit pipewire-gstreamer pipewire-libs pipewire-utils pipewire-plugin-libcamera pipewire-module-x11
-    fi
-}
+#pipewire () {
+#
+#    read -p "Do you want to install pipwire and related apps Y/N " pipe
+#    if [ "$pipe" = "y" ]; 
+#    then echo "$pass" | sudo dnf install pipewire wireplumber pipewire-alsa pipewire-jack pipewire-pulseaudio pavucontrol easyeffects alsa-utils pipewire-jack-audio-connection-kit pipewire-gstreamer pipewire-libs pipewire-utils pipewire-plugin-libcamera pipewire-module-x11
+#    fi
+#}
 
 picom_deps () {
 
@@ -105,23 +105,14 @@ colorscripts_inst () {
     esac
 }
 
-wayland_deps () {
-
-    read -p "Would you like to install wayland packages (why not?) Y/N " wayl
-    case $wayl in
-        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard grim swaybg swayidle swaylock wlroots waybar wofi slurp wf-recorder light yad viewnior imagemagick xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber;;
-        n|N ) echo "Aborted, skipping...";;
-    esac
-}
-
-ocs-ur () {
-    #Installing ocs-url
-    read -p "Would you like to install ocs-url (recommended) Y/N " yesno
-    case $yesno in
-        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install ocs-url-3.1.0-1.fc20.x86_64.rpm;;
-        n|N ) echo "Aborted, skipping...";;
-    esac
-}
+#wayland_deps () {
+#
+#    read -p "Would you like to install wayland packages (why not?) Y/N " wayl
+#    case $wayl in
+#        y|Y ) echo "Installing..."; echo "$pass" | sudo dnf install wl-clipboard grim swaybg swayidle swaylock wlroots waybar wofi slurp wf-recorder light yad viewnior imagemagick xorg-xwayland xdg-desktop-portal-wlr qt5-wayland qt6-wayland wireplumber;;
+#        n|N ) echo "Aborted, skipping...";;
+#    esac
+#}
 
 nix_inst () {
 
@@ -156,36 +147,16 @@ rpm_fusion () {
     echo "$pass" | sudo dnf install intel-media-driver
 }
 
-#does not work
-flatpak () {
-    command flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    #browser + patchbay + font manager
-    flatpak install flathub org.pipewire.Helvum
-    flatpak install flathub org.mozilla.firefox
-    flatpak install flathub org.gnome.FontManager
-}
-
-crontab () {
-    #crontab stuff
-    echo "# Updating Cron jobs to update on reboot #"
-    sleep 2
-    echo "@reboot echo $pass | sudo dnf upgrade" >> cfile
-    echo "@reboot echo $pass | sudo dnf autoremove" >> cfile
-}
-
 sysctl_stuff () {
-
     sudo systemctl enable bluetooth
     sudo systemctl enable acpid
 }
 
 cronmerge () {
-
     crontab cfile
 }
 
 zsh_inst () {
-
     echo " " | sudo dnf install zsh
     echo "/bin/zsh" | sudo lchsh "$USER"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -214,19 +185,7 @@ main () {
     sleep 2
     pkg_list
     sleep 2
-    #flatpak | DOES NOT WORK, LINES 152-156
-    sleep 2
-    colorscripts_inst
-    sleep 2
-    wayland_deps
-    sleep 2
-    pipewire
-    sleep 2
-    ocs-ur
-    sleep 2
     nix_inst
-    sleep 2
-    crontab
     sleep 2
     sysctl_stuff
     sleep 2

@@ -1,8 +1,0 @@
-#force a window to float:
-from libqtile import hook
-
-
-@hook.subscribe.client_new
-def float_my_app(window):
-    if window.window.get_name() == "My App":
-        window.floating = True
