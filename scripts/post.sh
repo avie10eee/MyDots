@@ -21,9 +21,6 @@ micro_conf () {
 
     echo "# Adding micro configuration #"
 
-    mkdir -p ${HOME}/.config/micro/colorschemes
-    mv ${DIR}catppuccin-mocha.micro ${HOME}/.config/micro/colorschemes
-
     echo '{
         "autosave": 1,
         "hlsearch": true,
@@ -63,48 +60,20 @@ zsh_conf () {
 wallpaper () {
     mkdir .wallpapers
     cp "${DIR}/wallpapers" ".wallpapers"
-    mv "${DIR}/setup/.autobg.sh" ${HOME}
+    mv "${DIR}/.autobg.sh" ${HOME}
 }
-
-#configures DT'S colorscipts to my liking (feel free to change)
-#colorscript_conf () {
-#
-#    read -p "Have you installed DT's colorscripts Y/N " colorsc
-#    if [ "$colorsc" = 'y' ]; then
-#        echo "# Configuring DT's colorscripts"
-#        sleep 2
-#        colorscript -b xmonad
-#        colorscript -b tiefighter2
-#        colorscript -b tiefighter1row
-#        colorscript -b tifighter1
-#        colorscript -b thebat2
-#        colorscript -b spectrum
-#        colorscript -b pukeskull
-#        colorscript -b mouseface2
-#        colorscript -b guns
-#        colorscript -b colorbars
-#        colorscript -b bloks
-#        colorscript -b blok
-#    fi
-#}
 
 #installs jetbrains mono nerd font
 nerd_font () {
     read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
     case $fontinst in
-        y|Y ) echo "# Adding Nerd fonts to ${HOME}/.fonts/truetype #"; 
+        y|Y ) echo "# Adding Nerd fonts to system #"; 
         mkdir -p ${HOME}/.fonts/truetype; wget -q ${NERDF}; 
-        unzip "${HOME}/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; 
+        unzip "${HOME}/Downloads/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; 
         fc-cache;;
 
         n|N ) echo "Aborted, skipping...";;
     esac
-}
-
-#configures neofetch
-neofetch_conf () {
-    #moving neofetch config to .config
-    mv ${DIR}/neofetch/config.conf ${HOME}/.config/neofetch
 }
 
 #configures the sudo alternative "doas"
@@ -129,7 +98,7 @@ nixunstable () {
 }
 
 #adds desktop entries for WM's
-qtile_desktop () { cat <<EOF > /usr/share/xsessions/qtile.desktop
+qtile_desktop () { cat <<EOF | sudo tee /usr/share/xsessions/qtile.desktop
     [Desktop Entry]
     Name=Qtile
     Comment=Qtile Window Manager
@@ -153,8 +122,8 @@ main () {
 
     welcome
     sleep 2
-    nixunstable
-    sleep 2
+    #nixunstable
+    #sleep 2
     micro_conf
     sleep 2
     tmux_conf
@@ -166,8 +135,6 @@ main () {
     nerd_font
     sleep 2
     doas_conf
-    sleep 2
-    neofetch_conf
     sleep 2
     picom
     sleep 2
