@@ -57,6 +57,3 @@ alias gc= "git commit -am " #commits with a message
 alias gl= "git log --graph --oneline --decorate" #shows a graph of commits
 alias ga= "git add -A" #adds all files
 alias gp= "git push -u origin" #pushes to github
-
-
-colorscript -r
