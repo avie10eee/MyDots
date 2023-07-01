@@ -78,21 +78,6 @@ picom_deps () {
     esac
 }
 
-nix_inst () {
-
-    #Nix install
-    read -p "would you like to install NIX Package Manager Y/N " nixinst
-    case $nixinst in
-        y|Y ) echo "# Starting NIX Package Manager installation... #";
-            sudo mkdir /nix;
-            sudo chown "$USER" /nix;
-            curl -L https://nixos.org/nix/install | sh -s -- --no-daemon;
-            sleep 45;
-            #linking nix apps to usr/share/applications
-            sudo ln -s /nix/var/nix/profiles/per-user/${HOME}/profile/share/applications /usr/share/applications;;
-        n|N ) echo "Aborted, skipping...";;
-    esac
-}
 
 rpm_fusion () {
 
@@ -137,8 +122,6 @@ main () {
     rpm_fusion
     sleep 2
     pkg_list
-    sleep 2
-    nix_inst
     sleep 2
     sysctl_stuff
     sleep 2
