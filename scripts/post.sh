@@ -48,7 +48,11 @@ zsh_conf () {
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+    if [ -f "${HOME}/setup/.zshrc" ]; then
     echo "${HOME}/setup/.zshrc" >> .zshrc
+    else
+    echo "${HOME}/setup/.zshrc" > .zshrc
+    fi
 
     #adding zsh plugins
     sed -i 's|ZSH_THEME=""|ZSH_THEME="powerlevel10k/powerlevel10k"|' ${HOME}/.zshrc
