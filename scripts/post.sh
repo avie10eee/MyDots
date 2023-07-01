@@ -56,13 +56,6 @@ zsh_conf () {
 
 }
 
-#adds a script script that changes the wallpaper
-wallpaper () {
-    mkdir .wallpapers
-    cp "${DIR}/wallpapers" ".wallpapers"
-    mv "${DIR}/.autobg.sh" ${HOME}
-}
-
 #installs jetbrains mono nerd font
 nerd_font () {
     read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
@@ -122,23 +115,19 @@ main () {
 
     welcome
     sleep 2
-    #nixunstable
-    #sleep 2
     micro_conf
     sleep 2
     tmux_conf
     sleep 2
     zsh_conf
     sleep 2
-    wallpaper
-    sleep 2
     nerd_font
     sleep 2
     doas_conf
     sleep 2
     picom
-    sleep 2
-    qtile_desktop
+    #sleep 2
+    #qtile_desktop
     sleep 2
     gooodbye
     sleep 6
