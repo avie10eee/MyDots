@@ -97,7 +97,9 @@ sysctl_stuff () {
 }
 
 zsh_inst () {
-    sudo dnf install zsh
+    echo " " | sudo dnf install zsh
+    echo "/bin/zsh" | sudo lchsh "$USER"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
 
 cleanup () {
