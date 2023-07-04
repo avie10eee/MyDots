@@ -34,7 +34,7 @@ pkg_list () {
     sleep 2
 
     #misc
-    sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gcc xfce4-power-manager volumeicon xfce4-settings xfce4-power-manager nitrogen dunst pixman polkit-gnome
+    sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gcc pavucontrol volumeicon nitrogen dunst pixman polkit-gnome
 
     #font + polybar
     sudo dnf install polybar fontawesome-fonts fontawesome5-fonts fontawesome-fonts-web 
