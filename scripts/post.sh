@@ -5,8 +5,8 @@
 #setting the dir
 DIR="{$HOME}/setup"
 
-#nerd font: jetbrains mono (my fav)
-NERDF=https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
+#nerd font
+NERDF="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip"
 
 #functions
 #welcomes the user
@@ -25,7 +25,7 @@ micro_conf () {
         "autosave": 1,
         "hlsearch": true,
         "colorscheme": "gruvbox",
-    }' > ${HOME}/.config/micro/settings.json
+    }' > "${HOME}"/.config/micro/settings.json
 
     #plugins
     micro -plugin install detectindent manipulator filemanager quoter
@@ -34,7 +34,12 @@ micro_conf () {
 #configures tmux multiplexer
 tmux_conf () {
     #turning on mouse in tmux
-    echo "set -g mouse on" >> ${HOME}/.tmux.conf
+    if [ -f "${HOME}"/.tmux.conf ]; then
+    echo "set -g mouse on" >> "${HOME}"/.tmux.conf
+    else
+    echo "set -g mouse on" > "${HOME}"/.tmux.conf
+    fi
+
 }
 
 #configures zshell
@@ -63,21 +68,13 @@ zsh_conf () {
 #installs jetbrains mono nerd font
 nerd_font () {
     read -p "Would you like to install JetBrainsMono nerd font Y/N " fontinst
-    case $fontinst in
-        y|Y ) echo "# Adding Nerd fonts to system #"; 
-        mkdir -p ${HOME}/.fonts/truetype; wget -q ${NERDF}; 
-        unzip "${HOME}/Downloads/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"; 
-        fc-cache;;
-
-        n|N ) echo "Aborted, skipping...";;
-    esac
-}
-
-#configures the sudo alternative "doas"
-doas_conf () {
-    echo "Configuring doas"
-    echo "add the following to /etc/doas.conf" > doas.txt
-    echo "permit persist keepenv ${USER} as root" >> doas.txt
+    if [ $fontinst = 'y' ]; then
+    echo "# Adding Nerd fonts to system #"
+    mkdir -p ${HOME}/.fonts/truetype
+    wget -q ${NERDF}
+    unzip "${HOME}/Downloads/JetBrainsMono.zip" -d "${HOME}/.fonts/truetype"
+    fc-cache
+    fi
 }
 
 #install a picom fork with blur and rounded corners
@@ -86,23 +83,6 @@ picom () {
     if [ "$jona" = 'y' ]; then
         nix-env -iA nixpkgs.picom-jonaburg
     fi
-}
-
-#adds nix-channel-unstable for newer packages
-nixunstable () {
-    nix-channel --add https://nixos.org/channels/nixpkgs-unstable
-    nix-channel --update
-}
-
-#adds desktop entries for WM's
-qtile_desktop () { cat <<EOF | sudo tee /usr/share/xsessions/qtile.desktop
-    [Desktop Entry]
-    Name=Qtile
-    Comment=Qtile Window Manager
-    Exec=qtile start
-    Type=Application
-    Keywords=wm;tiling
-EOF
 }
 
 #says goodbye to the user
@@ -127,11 +107,7 @@ main () {
     sleep 2
     nerd_font
     sleep 2
-    doas_conf
-    sleep 2
     picom
-    #sleep 2
-    #qtile_desktop
     sleep 2
     gooodbye
     sleep 6

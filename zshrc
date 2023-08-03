@@ -1,8 +1,5 @@
 # Avie6 zsh configuration
 
-
-autoload compinit promptinit
-
 export TERMINAL="alacritty"
 export BROWSER="firefox"
 export VISUAL="code"

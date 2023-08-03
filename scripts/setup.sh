@@ -34,10 +34,10 @@ pkg_list () {
     sleep 2
 
     #misc
-    sudo dnf install opendoas greetd rust cargo lxqt-archiver conky rofi gcc pavucontrol volumeicon nitrogen dunst pixman polkit-gnome
+    sudo dnf install rust cargo lxqt-archiver conky rofi gcc pavucontrol volumeicon nitrogen dunst pixman
 
-    #font + polybar
-    sudo dnf install polybar fontawesome-fonts fontawesome5-fonts fontawesome-fonts-web 
+    #font
+    sudo dnf install fontawesome-fonts fontawesome-6-free-fonts fontawesome6-fonts-web 
 
     #term
     sudo dnf install alacritty kitty
@@ -46,7 +46,7 @@ pkg_list () {
     sudo dnf install bluez bluez-tools bluez-libs blueman NetworkManager
 
     #term tools +term editor + gui editor
-    sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake ninja-build geany feh meson sxhkd  
+    sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake geany feh sxhkd  
 
     #x11 screenshot
     sudo dnf install flameshot 
@@ -67,17 +67,6 @@ pkg_list () {
 
     echo "# Finished packages installation #"
 }
-
-picom_deps () {
-
-    read -p "Would you like to install picom dependecies Y/N " picom
-    case $picom in
-        y|Y ) echo "Installing..."; 
-        sudo dnf install dbus-devel gcc git libconfig-devel libdrm-devel libev-devel libX11-devel libX11-xcb libXext-devel libxcb-devel libGL-devel libEGL-devel meson pcre2-devel pixman-devel uthash-devel xcb-util-image-devel xcb-util-renderutil-devel xorg-x11-proto-devel;;
-        n|N ) echo "Aborted, skipping...";;
-    esac
-}
-
 
 rpm_fusion () {
 
