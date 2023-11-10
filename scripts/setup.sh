@@ -3,7 +3,6 @@
 
 #vars
 DIR=${HOME}/setup
-cron=$(crontab -l)
 
 
 #functions
@@ -27,43 +26,45 @@ dnf_config () {
     sudo dnf upgrade
 }
 
-pkg_list () {
-
+install_packages() {
     echo "# Installing selected PKGs #"
-
     sleep 2
 
-    #misc
-    sudo dnf install rust cargo lxqt-archiver conky rofi gcc pavucontrol volumeicon nitrogen dunst pixman
+    packages=(
+        # Misc
+        rust cargo lxqt-archiver conky rofi gcc pavucontrol volumeicon nitrogen dunst pixman libvirt-daemon-kvm virt-manager libvirt
 
-    #font
-    sudo dnf install fontawesome-fonts fontawesome-6-free-fonts fontawesome6-fonts-web 
+        # Font
+        fontawesome-fonts fontawesome-6-free-fonts fontawesome6-fonts-web
 
-    #term
-    sudo dnf install alacritty kitty
+        # Term
+        alacritty kitty
 
-    #bluetooth + network manager
-    sudo dnf install bluez bluez-tools bluez-libs blueman NetworkManager
+        # Bluetooth + Network Manager
+        bluez bluez-tools bluez-libs blueman NetworkManager
 
-    #term tools +term editor + gui editor
-    sudo dnf install micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake geany feh sxhkd  
+        # Term tools + Term editor + GUI editor
+        micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake geany feh sxhkd ncdu htop
 
-    #x11 screenshot
-    sudo dnf install flameshot 
+        # X11 screenshot
+        flameshot
 
-    #file manager
-    sudo dnf install thunar
+        # File manager
+        thunar
 
-    #xorg server
-    sudo dnf install xorg-x11-server-Xorg xorg-x11-server-common
+        # Xorg server
+        xorg-x11-server-Xorg xorg-x11-server-common
 
-    #python + pip3
-    sudo dnf install python3-pip python-pip-wheel
+        # Python + pip3
+        python3-pip python-pip-wheel seaborn matplotlib numpy requests pandas
 
-    #python depencies
-    sudo dnf install python3-cffi python3-cairocffi python3-xcffib python3-dbus-next
+        # Python dependencies
+        python3-cffi python3-cairocffi python3-xcffib python3-dbus-next
 
-    sudo dnf install git-all
+        git-all git
+    )
+
+    sudo dnf install "${packages[@]}"
 
     echo "# Finished packages installation #"
 }
@@ -86,14 +87,9 @@ sysctl_stuff () {
 }
 
 zsh_inst () {
-    echo " " | sudo dnf install zsh
-    echo "/bin/zsh" | sudo lchsh "$USER"
+    sudo dnf install zsh
+    echo "/bin/zsh" | sudo chsh "$USER"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
-
-cleanup () {
-    echo "# Running cleanup #"
-    sudo dnf autoremove
 }
 
 goodbye () {
@@ -114,9 +110,8 @@ main () {
     sleep 2
     sysctl_stuff
     sleep 2
-    cleanup
-    sleep 2
     goodbye
+    sleep 2
     zsh_inst
     
 }
