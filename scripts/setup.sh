@@ -32,28 +32,13 @@ install_packages() {
 
     packages=(
         # Misc
-        rust cargo lxqt-archiver conky rofi gcc pavucontrol volumeicon nitrogen dunst pixman libvirt-daemon-kvm virt-manager libvirt
+        rust cargo conky rofi gcc pavucontrol nitrogen libvirt-daemon-kvm virt-manager libvirt
 
         # Font
         fontawesome-fonts fontawesome-6-free-fonts fontawesome6-fonts-web
 
-        # Term
-        alacritty kitty
-
-        # Bluetooth + Network Manager
-        bluez bluez-tools bluez-libs blueman NetworkManager
-
         # Term tools + Term editor + GUI editor
-        micro tmux bat wget sed unzip neofetch curl tldr make tree exa acpi cmake geany feh sxhkd ncdu htop
-
-        # X11 screenshot
-        flameshot
-
-        # File manager
-        thunar
-
-        # Xorg server
-        xorg-x11-server-Xorg xorg-x11-server-common
+        micro bat wget sed unzip neofetch curl tldr make tree exa acpi cmake feh sxhkd ncdu htop
 
         # Python + pip3
         python3-pip python-pip-wheel seaborn matplotlib numpy requests pandas
@@ -82,16 +67,6 @@ rpm_fusion () {
     sudo dnf install intel-media-driver
 }
 
-sysctl_stuff () {
-    sudo systemctl enable bluetooth
-}
-
-zsh_inst () {
-    sudo dnf install zsh
-    echo "/bin/zsh" | sudo chsh "$USER"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-}
-
 goodbye () {
     echo "# Please Reboot!! #"
     sleep 6
@@ -108,11 +83,8 @@ main () {
     sleep 2
     pkg_list
     sleep 2
-    sysctl_stuff
-    sleep 2
     goodbye
     sleep 2
-    zsh_inst
     
 }
 

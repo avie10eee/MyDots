@@ -60,17 +60,6 @@ micro_conf () {
     micro -plugin install detectindent manipulator filemanager quoter
 }
 
-#configures tmux multiplexer
-tmux_conf () {
-    #turning on mouse in tmux
-    if [ -f "${HOME}"/.tmux.conf ]; then
-    echo "set -g mouse on" >> "${HOME}"/.tmux.conf
-    else
-    echo "set -g mouse on" > "${HOME}"/.tmux.conf
-    fi
-
-}
-
 #configures zshell
 zsh_conf () {
 
@@ -139,10 +128,6 @@ main () {
     welcome
     sleep 2
     micro_conf
-    sleep 2
-    tmux_conf
-    sleep 2
-    zsh_conf
     sleep 2
     nerd_font
     sleep 2
