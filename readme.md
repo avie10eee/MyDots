@@ -1,59 +1,31 @@
-## this is outdated, will update soon🙂
-
-
-root-setup.sh (Run first) will do the following:
-
-    1. Setup your user
-
-    2. Add user to sudo 
-
-    3. Set password for user
-
-<hr />
+## This is my custom config, please make sure you know what you are getting into when installing.
 
 setup.sh will do the following:
 
     1. Configures DNF for speed
 
-    2. Upgrade your system
+    2. Upgrade your system and install a list of packages
 
-    3. ask if you would like to use DT's colorscripts
-
-    5. ask if you would like to to use wayland packages and if you would like to install hyprland WM
-
-    6. Install some packages ( tldr make polybar curl tree fontawesome-fonts fontawesome-fonts-web sed unzip neofetch alacritty micro tmux bat flameshot opendoas kf5-krunner bluez Thunar firefox wget geany greetd rust cargo zsh-syntax-highlighting exa)
-
-    7. Install ocs-url
-
-    8. Install nix package manager
-
-    9. Enable RPM-Fusion
-
-    10. Add Cron jobs that will upgrade your system and run autoremove
-
-    11. Clone catpuccin alacritty theme and move it to .config/alacritty
-
-    12. Clone polybar-themes and move it to .config/polybar
-
-    13. Clone powerlevel10k zsh theme
-
-    14. Run Polybar-Themes installer
-
-    15. Install ZSH and Oh My ZSH
-
-    16. Append changes to crontab
-
-    17. Run cleanup
-
+    3.  Enables RPM-Fusion repositories and install Media codecs
 
 <hr />
 
 post.sh (Run last) will do the following:
 
-    1. Configure Micro text editor
+    1.Configure the Micro text editor
 
-    2. Configure Tmux
+    2. Configure zsh
 
-    3. Configure ZSH
+    3. Install JetBrains Mono Nerd font
 
-    4. Configure Doas
+<hr />
+
+nix.sh (Optional) will do the following:
+
+    1. Make a Nix directory with admin perms
+
+    2. Install Nix Package manager
+
+    3. Link nix apps to usr/share/applications
+
+# Thank you for using PigOS post install script
