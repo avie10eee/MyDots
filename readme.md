@@ -28,4 +28,4 @@ nix.sh (Optional) will do the following:
 
     3. Link nix apps to usr/share/applications
 
-# Thank you for using PigOS post install script
+### Thank you for using PigOS post install script
